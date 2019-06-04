@@ -324,24 +324,5 @@ animateIndicator(e) {
     
 }
 
-/*
-metodos para actualizar por el refreser
-*/
-
-updateCom(event?){
-
-}
-
-updateChi(event?){
-
-}
-
-updateCor(event?){
-
-}
-
-updateCua(event?){
-
-}
 
 }

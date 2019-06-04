@@ -35,10 +35,10 @@ export class BackbuttonService {
             if(this.currentURL=="/modal"){
               this.navCtrl.navigateRoot(['/listas'], { animationDirection: "back" });
               if(this.currentURL=="/listas"){
-                this.navCtrl.navigateRoot(['/mapaPrincipal'], { animationDirection: "back" });
+                this.navCtrl.navigateRoot(['/mapa-principal'], { animationDirection: "back" });
   
               }
-              if(this.navCtrl.navigateRoot(['/mapaPrincipal'])){
+              if(this.navCtrl.navigateRoot(['/mapa-principal'])){
                 navigator['app'].exitApp();
   
               }

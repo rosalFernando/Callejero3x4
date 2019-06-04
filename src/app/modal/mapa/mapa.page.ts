@@ -101,10 +101,7 @@ popupAnchor: [-3, -76] // point from which the popup should open relative..
           .bindPopup(this.ubicacionnombre)
           .openPopup();
 
-
-
-
-        
+  
 
   }
 
@@ -114,8 +111,5 @@ popupAnchor: [-3, -76] // point from which the popup should open relative..
     this.map.remove();
   }
 
-  cerrar(){
-    this.modalCon.dismiss();
-  }
 
 }

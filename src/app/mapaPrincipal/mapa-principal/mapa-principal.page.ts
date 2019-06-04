@@ -72,18 +72,7 @@ popupAnchor: [-3, -76] // point from which the popup should open relative..
       
     }).addTo(this.map);
 
-    //marker([ 37.8915500,-4.7727500],{draggable: true}).addTo(this.map);
-/** 
- * fetch('./assets/data/posAgrupa.json').then(res => res.json())
-    .then(json => {
-      this.agrupList = json.properties;
-      for (const property of this.agrupList) {
-        marker([property.lat, property.long]).addTo(this.map)
-          .bindPopup(property.place)
-          .openPopup();
-      }
-    });
-*/
+ 
   
 this.cloud.getUbicaciones()
 .then((datos)=>{
@@ -101,9 +90,7 @@ marker([doc.data().pos._lat, doc.data().pos._long],{icon:this.icon}).addTo(this.
 
    
 
-    setTimeout(() => {
-      //this.map.invalidateSize();
-  }, 5000);
+ 
 
   
     
