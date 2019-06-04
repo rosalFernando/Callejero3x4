@@ -1,0 +1,25 @@
+{
+    "properties" : [
+    {
+        "place": "Plaza de las Tendillas",
+        "lat": 37.884491,
+        "long": -4.779565
+        
+    },
+    {
+        "place": "Plaza del Potro",
+        "lat": 37.880986111111,
+        "long": -4.774825
+    },
+    {
+        "place": "Mezquita-Catedral",
+        "lat": 37.879194444444,
+        "long": -4.7797222222222
+    },
+    {
+        "place": "Plaza de Capuchinos",
+        "lat": 37.88817 ,
+        "long": -4.77761
+    }
+    ]
+ }

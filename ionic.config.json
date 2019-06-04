@@ -1,0 +1,7 @@
+{
+  "name": "callejero3x4",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

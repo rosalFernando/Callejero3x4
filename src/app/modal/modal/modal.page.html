@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar color="success">
+      
+          <ion-button fill="outline" color="success" slot="start" (click)="cerrar()" >
+              <ion-icon slot="icon-only" color="light" name="undo" ></ion-icon>
+            </ion-button>
+        <ion-title style="text-align: start">{{tipo}}</ion-title>
+      
+   
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+      <ion-card style="background-color:yellow">
+          <ion-card-header>
+            
+            <ion-card-title>Nombre</ion-card-title>
+          </ion-card-header>
+         
+        
+          <ion-card-content style="font-size: 30px">
+           {{nombre}}
+          </ion-card-content>
+        </ion-card>
+        <ion-card style="background-color: lightsalmon">
+            <ion-card-header>
+              
+              <ion-card-title>Director</ion-card-title>
+            </ion-card-header>
+          
+            <ion-card-content style="font-size: 30px">
+             {{director}}
+            </ion-card-content>
+          </ion-card>
+          <ion-card style="background-color: orange">
+              <ion-card-header>
+                
+                <ion-card-title>Origen</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content style="font-size: 30px">
+               {{origen}}
+              </ion-card-content>
+            </ion-card>
+        
+          <ion-card style="background-color:orangered">
+              <ion-card-header>
+                
+                <ion-card-title>Horario</ion-card-title>
+              </ion-card-header>
+            
+              <ion-card-content >
+                  <ion-item *ngFor="let item of horario;let i = index">
+               {{item.horario}}
+               {{item.ubicacionnombre}}
+               <img src="../../../assets/img/plumas.png"  slot="end" style="width:40px;margin:0px" (click)="mostrarUbi(item.ubicacionnombre,item.ubicacionpos)">
+               </ion-item>
+              </ion-card-content>
+            </ion-card>
+    
+          </ion-content> 
+        
+  
+
+  <ion-footer >
+      <ion-toolbar color="success">
+        <ion-title color="light" style="font-size: 15px; text-align: center">COAC Córdoba.</ion-title>
+      </ion-toolbar>
+    </ion-footer>

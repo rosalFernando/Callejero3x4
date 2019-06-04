@@ -1,0 +1,116 @@
+
+<ion-header>
+    <ion-toolbar color="success" >
+        <ion-title color="light" style="text-align: center">Agrupaciones</ion-title>
+      </ion-toolbar>
+
+  <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"
+    style="background-color:mediumpurple" color="light">
+    <ion-segment-button layout="icon-start" value="0" style="--padding-end:0px;--padding-start:0px">
+
+      <ion-label>Comparsa</ion-label>
+    </ion-segment-button>
+    <ion-segment-button layout="icon-start" value="1" style="--padding-end:0px;--padding-start:0px">
+
+      <ion-label>Chirigota</ion-label>
+    </ion-segment-button>
+    <ion-segment-button layout="icon-start" value="2" style="--padding-end:0px;--padding-start:0px">
+
+      <ion-label>Coro</ion-label>
+    </ion-segment-button>
+    <ion-segment-button layout="icon-start" value="3" style="--padding-end:0px;--padding-start:0px">
+
+      <ion-label>Cuarteto</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div id='indicator' class="SwipedTabs-indicatorSegment" [ngStyle]=" 
+  {'width.%': (100/this.tabs.length)}" style="margin-top:2px"></div>
+  
+  
+  
+  
+</ion-header>
+
+<ion-content class="fixed-scroll">
+    <ion-slides #slides (ionSlideTransitionStart)="updateIndicatorPosition();updateCat(slides.getActiveIndex())"
+    (ionSlideWillChange)="updateIndicatorPosition()" (ionSlideDidChange)="updateIndicatorPosition()" #SwipedTabsSlider
+    (ionSlideDrag)="animateIndicator($event)">
+    <ion-slide> 
+      <ion-content >
+        <ion-infinite-scroll #infiniteScroll threshold="10px" >
+        <ion-list #dynamicList id="dynamicList" >
+          <ion-item *ngFor="let item of listaAgrupComPanel;let i = index" >
+            <ion-label >
+              <h3>{{item.nombre}}</h3>
+              <h4>Director: {{item.director}}</h4>
+              
+            </ion-label>
+            <img src="../../../assets/img/chir.png"  slot="end" style="width:40px;margin:0px" (click)="mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)">
+          </ion-item>
+  
+        </ion-list>
+      </ion-infinite-scroll>
+      </ion-content>
+      </ion-slide>
+      
+     
+    <ion-slide>
+      <ion-content class="fixed-scroll">
+        <ion-infinite-scroll #infiniteScroll threshold="10px">
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item *ngFor="let item of listaAgrupChiPanel;let i = index">
+          <ion-label >
+            <h3>{{item.nombre}}</h3>
+            <h4>Director: {{item.director}}</h4>
+            
+          </ion-label>
+          <img src="../../../assets/img/comp.png"  slot="end" style="width:40px;margin:0px" (click)="mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)">
+        </ion-item>
+
+      </ion-list>
+        </ion-infinite-scroll>
+      </ion-content>
+    </ion-slide>
+    <ion-slide>
+        <ion-content class="fixed-scroll">
+            <ion-infinite-scroll #infiniteScroll threshold="10px">
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item *ngFor="let item of listaAgrupCoroPanel;let i = index">
+          <ion-label >
+            <h3>{{item.nombre}}</h3>
+            <h4>Director: {{item.director}}</h4>
+            
+          </ion-label>
+          <img src="../../../assets/img/cor.png"  slot="end" style="width:40px;margin:0px" (click)="mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)">
+        </ion-item>
+
+      </ion-list>
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-slide>
+    <ion-slide>
+        <ion-content class="fixed-scroll">
+            <ion-infinite-scroll #infiniteScroll threshold="10px">
+      <ion-list #dynamicList id="dynamicList">
+        <ion-item *ngFor="let item of listaAgrupCuarPanel;let i = index">
+          <ion-label >
+            <h3>{{item.nombre}}</h3>
+            <h4>Director: {{item.director}}</h4>
+            
+          </ion-label>
+          <img src="../../../assets/img/cua.png"  slot="end" style="width:40px;margin:0px" (click)="mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)">
+        </ion-item>
+
+      </ion-list>
+            </ion-infinite-scroll>
+        </ion-content>
+    </ion-slide>
+  </ion-slides>
+
+</ion-content>
+
+<ion-footer >
+    <ion-toolbar color="success">
+      <ion-title color="light" style="font-size: 15px; text-align: center">COAC Córdoba.</ion-title>
+    </ion-toolbar>
+  </ion-footer>
