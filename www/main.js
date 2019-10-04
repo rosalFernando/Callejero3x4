@@ -931,7 +931,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
 
 /***/ }),
 
@@ -1078,7 +1078,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\n  crossorigin=\"\"/>\n <!--\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\n -->\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\n   crossorigin=\"\"></script>\n  \n</ion-header>\n<ion-content >\n\n\n    <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\n \n</ion-content>\n\n"
+module.exports = "\r\n<ion-header>\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\r\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\r\n  crossorigin=\"\"/>\r\n <!--\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\r\n -->\r\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\r\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\r\n   crossorigin=\"\"></script>\r\n  \r\n</ion-header>\r\n<ion-content >\r\n\r\n\r\n    <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\r\n \r\n</ion-content>\r\n\r\n"
 
 /***/ }),
 
@@ -1224,9 +1224,6 @@ var MapaPage = /** @class */ (function () {
     MapaPage.prototype.ionViewWillLeave = function () {
         this.map.remove();
     };
-    MapaPage.prototype.cerrar = function () {
-        this.modalCon.dismiss();
-    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('map2'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
@@ -1258,7 +1255,7 @@ var MapaPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"success\">\n      \n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\n            </ion-button>\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\n      \n   \n    </ion-toolbar>\n  </ion-header>\n  \n  <ion-content>\n      <ion-card style=\"background-color:yellow\">\n          <ion-card-header>\n            \n            <ion-card-title>Nombre</ion-card-title>\n          </ion-card-header>\n         \n        \n          <ion-card-content style=\"font-size: 30px\">\n           {{nombre}}\n          </ion-card-content>\n        </ion-card>\n        <ion-card style=\"background-color: lightsalmon\">\n            <ion-card-header>\n              \n              <ion-card-title>Director</ion-card-title>\n            </ion-card-header>\n          \n            <ion-card-content style=\"font-size: 30px\">\n             {{director}}\n            </ion-card-content>\n          </ion-card>\n          <ion-card style=\"background-color: orange\">\n              <ion-card-header>\n                \n                <ion-card-title>Origen</ion-card-title>\n              </ion-card-header>\n            \n              <ion-card-content style=\"font-size: 30px\">\n               {{origen}}\n              </ion-card-content>\n            </ion-card>\n        \n          <ion-card style=\"background-color:orangered\">\n              <ion-card-header>\n                \n                <ion-card-title>Horario</ion-card-title>\n              </ion-card-header>\n            \n              <ion-card-content >\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\n               {{item.horario}}\n               {{item.ubicacionnombre}}\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarUbi(item.ubicacionnombre,item.ubicacionpos)\">\n               </ion-item>\n              </ion-card-content>\n            </ion-card>\n    \n          </ion-content> \n        \n  \n\n  <ion-footer >\n      <ion-toolbar color=\"success\">\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\n      </ion-toolbar>\n    </ion-footer>\n"
+module.exports = "<ion-header>\r\n    <ion-toolbar color=\"success\">\r\n      \r\n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\r\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\r\n            </ion-button>\r\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\r\n      \r\n   \r\n    </ion-toolbar>\r\n  </ion-header>\r\n  \r\n  <ion-content>\r\n      <ion-card style=\"background-color:yellow\">\r\n          <ion-card-header>\r\n            \r\n            <ion-card-title>Nombre</ion-card-title>\r\n          </ion-card-header>\r\n         \r\n        \r\n          <ion-card-content style=\"font-size: 30px\">\r\n           {{nombre}}\r\n          </ion-card-content>\r\n        </ion-card>\r\n        <ion-card style=\"background-color: lightsalmon\">\r\n            <ion-card-header>\r\n              \r\n              <ion-card-title>Director</ion-card-title>\r\n            </ion-card-header>\r\n          \r\n            <ion-card-content style=\"font-size: 30px\">\r\n             {{director}}\r\n            </ion-card-content>\r\n          </ion-card>\r\n          <ion-card style=\"background-color: orange\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Origen</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content style=\"font-size: 30px\">\r\n               {{origen}}\r\n              </ion-card-content>\r\n            </ion-card>\r\n        \r\n          <ion-card style=\"background-color:orangered\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Horario</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content >\r\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\r\n               {{item.horario}}\r\n               {{item.ubicacionnombre}}\r\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarUbi(item.ubicacionnombre,item.ubicacionpos)\">\r\n               </ion-item>\r\n              </ion-card-content>\r\n            </ion-card>\r\n    \r\n          </ion-content> \r\n        \r\n  \r\n\r\n  <ion-footer >\r\n      <ion-toolbar color=\"success\">\r\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n      </ion-toolbar>\r\n    </ion-footer>\r\n"
 
 /***/ }),
 
@@ -1472,9 +1469,9 @@ var BackbuttonService = /** @class */ (function () {
                     if (_this.currentURL == "/modal") {
                         _this.navCtrl.navigateRoot(['/listas'], { animationDirection: "back" });
                         if (_this.currentURL == "/listas") {
-                            _this.navCtrl.navigateRoot(['/mapaPrincipal'], { animationDirection: "back" });
+                            _this.navCtrl.navigateRoot(['/mapa-principal'], { animationDirection: "back" });
                         }
-                        if (_this.navCtrl.navigateRoot(['/mapaPrincipal'])) {
+                        if (_this.navCtrl.navigateRoot(['/mapa-principal'])) {
                             navigator['app'].exitApp();
                         }
                     }

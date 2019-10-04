@@ -61,7 +61,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-content class=\"fixed-scroll\" >\n    \n   \n    <img class=\"imagen\" src=\"../../../assets/img/portada.png\"  >\n\n     \n\n       \n        \n        \n        \n        \n</ion-content>\n\n"
+module.exports = "\r\n<ion-content class=\"fixed-scroll\" >\r\n    \r\n   \r\n    <img class=\"imagen\" src=\"../../../assets/img/portada.png\"  >\r\n\r\n     \r\n\r\n       \r\n        \r\n        \r\n        \r\n        \r\n</ion-content>\r\n\r\n"
 
 /***/ }),
 

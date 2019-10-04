@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, LoadingController, ModalController, ActionSheetController, ToastController, IonInfiniteScroll } from '@ionic/angular';
+import { IonSlides, LoadingController, ModalController, ActionSheetController, ToastController, IonInfiniteScroll, PopoverController } from '@ionic/angular';
 import {ActivatedRoute, Router } from '@angular/router';
 import { CloudServiceService } from '../services/cloud-service.service';
 import { ModalPage } from '../modal/modal/modal.page';
 import { DocumentReference } from 'angularfire2/firestore';
+import { PopOverMenuComponent } from '../pop-over-menu/pop-over-menu.component';
 
 @Component({
   selector: 'app-listas',
@@ -35,7 +36,8 @@ export class ListasPage implements OnInit {
     public modalCont: ModalController,
     public actionSheetController: ActionSheetController,
     private cloud: CloudServiceService,
-    private toast:ToastController) { }
+    private toast:ToastController,
+    private popoverController: PopoverController) { }
     
 
     async presentToast(msg) {
@@ -324,5 +326,16 @@ animateIndicator(e) {
     
 }
 
+async presentPopover(event){
+  const popver= await this.popoverController.create({
+component: PopOverMenuComponent,
+event
+  });
+  return await popver.present();
+}
 
 }
+
+
+
+

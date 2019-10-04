@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ListasPage } from './listas.page';
+import { PopOverMenuComponent } from '../pop-over-menu/pop-over-menu.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ListasPage]
+  entryComponents:[PopOverMenuComponent],
+  declarations: [ListasPage,PopOverMenuComponent]
 })
 export class ListasPageModule {}

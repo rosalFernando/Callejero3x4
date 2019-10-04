@@ -8,7 +8,9 @@ const routes: Routes = [
   { path: 'listas', loadChildren: './listas/listas.module#ListasPageModule' },
   { path: 'modal', loadChildren: './modal/modal/modal.module#ModalPageModule' },
   { path: 'mapa', loadChildren: './modal/mapa/mapa.module#MapaPageModule' },
-  { path: 'mapa-principal', loadChildren: './mapaPrincipal/mapa-principal/mapa-principal.module#MapaPrincipalPageModule' },
+  { path: 'mapa-principal', loadChildren: './mapaPrincipal/mapa-principal/mapa-principal.module#MapaPrincipalPageModule' },  { path: 'autenticacion', loadChildren: './auth/autenticacion/autenticacion.module#AutenticacionPageModule' },
+  { path: 'registro', loadChildren: './auth/registro/registro.module#RegistroPageModule' },
+
 ];
 
 @NgModule({

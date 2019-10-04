@@ -17,16 +17,17 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    console.log("dentro will enter");
-    setTimeout(() => {
-      this.irMapa();
-    }, 2000);
+    
+setTimeout(()=>{
+  this.irAuth();
+}, 3000)
+
 
     
   }
-irMapa(){
-  this.router.navigate(['mapa-principal']);
-  console.log("dentro irMapa");
+irAuth(){
+  this.router.navigate(['autenticacion']);
+  console.log("dentro autenticacion");
 }
 
 

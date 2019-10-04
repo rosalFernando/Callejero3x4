@@ -2,6 +2,13 @@
 <ion-header>
     <ion-toolbar color="success" >
         <ion-title color="light" style="text-align: center">Agrupaciones</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </ion-button>
+
+        </ion-buttons>
+      
       </ion-toolbar>
 
   <ion-segment [(ngModel)]="category" (ionChange)="slides.slideTo(category)"

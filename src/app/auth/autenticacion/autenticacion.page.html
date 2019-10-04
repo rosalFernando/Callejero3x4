@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title color="light" style="text-align: center">Inicio de Sesiòn</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <form class="form" [formGroup]="validationForm"  (ngSubmit)="loginUser(validationForm.value)">
+ 
+    <ion-item>
+      <ion-label  position="floating" color="primary">Email</ion-label>
+      <ion-input type="text" formControlName="email"></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMsg.email">
+        <div class="error-message" *ngIf="validationForm.get('email').hasError(validation.type) && (validationForm.get('email').dirty || validationForm.get('email').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+ 
+    <ion-item>
+      <ion-label  position="floating" color="primary">Contraseña</ion-label>
+      <ion-input type="password" formControlName="password" class="form-controll" required></ion-input>
+    </ion-item>
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validationMsg.password">
+        <div class="error-message" *ngIf="validationForm.get('password').hasError(validation.type) && (validationForm.get('password').dirty || validationForm.get('password').touched)">
+          {{ validation.message }}
+        </div>
+      </ng-container>
+    </div>
+ 
+    <ion-button class="submit-btn" type="submit"  [disabled]="!validationForm.valid">Acpetar</ion-button>
+ 
+    <label class="error-message">{{errorMessage}}</label>
+  </form>
+  <p class="go-to-register">
+    ¿Aun no te has registrado? <a (click)="irRegistro()">Registrate.</a>
+  </p>
+</ion-content>
+<ion-footer >
+    <ion-toolbar color="success">
+      <ion-title color="light" style="font-size: 15px; text-align: center">COAC Córdoba.</ion-title>
+    </ion-toolbar>
+  </ion-footer>

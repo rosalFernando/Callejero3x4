@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var _mapa_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
+/* harmony import */ var _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../modal/mapa/mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -31,7 +31,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     {
         path: '',
-        component: _mapa_page__WEBPACK_IMPORTED_MODULE_5__["MapaPage"]
+        component: _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_5__["MapaPage"]
     }
 ];
 var MapaPageModule = /** @class */ (function () {
@@ -43,9 +43,9 @@ var MapaPageModule = /** @class */ (function () {
                 _angular_common__WEBPACK_IMPORTED_MODULE_1__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
-                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(routes)
+                _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(routes),
             ],
-            declarations: [_mapa_page__WEBPACK_IMPORTED_MODULE_5__["MapaPage"]]
+            declarations: []
         })
     ], MapaPageModule);
     return MapaPageModule;

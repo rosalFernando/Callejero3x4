@@ -32,16 +32,18 @@ export class ModalPage implements OnInit {
     public modalCont: ModalController
     
   ) { 
+    //comprobar en oninit
+   
+    
+  }
+
+  ngOnInit() {
     this.nombre=this.navPar.get('nombre');
     this.key=this.navPar.get('key');
     this.origen=this.navPar.get('origen');
     this.tipo=this.navPar.get('tipo');
     this.director=this.navPar.get('director');
     this.horario=this.navPar.get('horario');
-    
-  }
-
-  ngOnInit() {
   }
 
   async presentLoading() {

@@ -14,10 +14,16 @@ import { environment } from 'src/environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ModalPage } from './modal/modal/modal.page';
 import {MapaPage} from './modal/mapa/mapa.page';
+import {AuthService} from './services/auth.service';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import * as firebase from 'firebase';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
 
+
+firebase.initializeApp(environment.firebaseConfig);
 
 
 
@@ -32,8 +38,9 @@ import {MapaPage} from './modal/mapa/mapa.page';
     AngularFireDatabaseModule,
     
     AngularFireModule.initializeApp(environment.firebaseConfig),
-  
+    ReactiveFormsModule,
     AngularFirestoreModule,
+    AngularFireAuthModule
   
     
   
@@ -42,6 +49,7 @@ import {MapaPage} from './modal/mapa/mapa.page';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFirestore,
   ],
