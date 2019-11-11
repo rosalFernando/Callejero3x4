@@ -16,12 +16,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _listas_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./listas.page */ "./src/app/listas/listas.page.ts");
+/* harmony import */ var _pop_over_menu_pop_over_menu_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pop-over-menu/pop-over-menu.component */ "./src/app/pop-over-menu/pop-over-menu.component.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -45,7 +47,8 @@ var ListasPageModule = /** @class */ (function () {
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouterModule"].forChild(routes)
             ],
-            declarations: [_listas_page__WEBPACK_IMPORTED_MODULE_5__["ListasPage"]]
+            entryComponents: [_pop_over_menu_pop_over_menu_component__WEBPACK_IMPORTED_MODULE_6__["PopOverMenuComponent"]],
+            declarations: [_listas_page__WEBPACK_IMPORTED_MODULE_5__["ListasPage"], _pop_over_menu_pop_over_menu_component__WEBPACK_IMPORTED_MODULE_6__["PopOverMenuComponent"]]
         })
     ], ListasPageModule);
     return ListasPageModule;
@@ -62,7 +65,7 @@ var ListasPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<ion-header>\r\n    <ion-toolbar color=\"success\" >\r\n        <ion-title color=\"light\" style=\"text-align: center\">Agrupaciones</ion-title>\r\n      </ion-toolbar>\r\n\r\n  <ion-segment [(ngModel)]=\"category\" (ionChange)=\"slides.slideTo(category)\"\r\n    style=\"background-color:mediumpurple\" color=\"light\">\r\n    <ion-segment-button layout=\"icon-start\" value=\"0\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Comparsa</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"1\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Chirigota</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"2\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Coro</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"3\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Cuarteto</ion-label>\r\n    </ion-segment-button>\r\n  </ion-segment>\r\n  <div id='indicator' class=\"SwipedTabs-indicatorSegment\" [ngStyle]=\" \r\n  {'width.%': (100/this.tabs.length)}\" style=\"margin-top:2px\"></div>\r\n  \r\n  \r\n  \r\n  \r\n</ion-header>\r\n\r\n<ion-content class=\"fixed-scroll\">\r\n    <ion-slides #slides (ionSlideTransitionStart)=\"updateIndicatorPosition();updateCat(slides.getActiveIndex())\"\r\n    (ionSlideWillChange)=\"updateIndicatorPosition()\" (ionSlideDidChange)=\"updateIndicatorPosition()\" #SwipedTabsSlider\r\n    (ionSlideDrag)=\"animateIndicator($event)\">\r\n    <ion-slide> \r\n      <ion-content >\r\n        <ion-infinite-scroll #infiniteScroll threshold=\"10px\" >\r\n        <ion-list #dynamicList id=\"dynamicList\" >\r\n          <ion-item *ngFor=\"let item of listaAgrupComPanel;let i = index\" >\r\n            <ion-label >\r\n              <h3>{{item.nombre}}</h3>\r\n              <h4>Director: {{item.director}}</h4>\r\n              \r\n            </ion-label>\r\n            <img src=\"../../../assets/img/chir.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n          </ion-item>\r\n  \r\n        </ion-list>\r\n      </ion-infinite-scroll>\r\n      </ion-content>\r\n      </ion-slide>\r\n      \r\n     \r\n    <ion-slide>\r\n      <ion-content class=\"fixed-scroll\">\r\n        <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupChiPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/comp.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n        </ion-infinite-scroll>\r\n      </ion-content>\r\n    </ion-slide>\r\n    <ion-slide>\r\n        <ion-content class=\"fixed-scroll\">\r\n            <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupCoroPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/cor.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n            </ion-infinite-scroll>\r\n        </ion-content>\r\n    </ion-slide>\r\n    <ion-slide>\r\n        <ion-content class=\"fixed-scroll\">\r\n            <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupCuarPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/cua.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n            </ion-infinite-scroll>\r\n        </ion-content>\r\n    </ion-slide>\r\n  </ion-slides>\r\n\r\n</ion-content>\r\n\r\n<ion-footer >\r\n    <ion-toolbar color=\"success\">\r\n      <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n    </ion-toolbar>\r\n  </ion-footer>"
+module.exports = "\r\n<ion-header>\r\n    <ion-toolbar color=\"success\" >\r\n        <ion-title color=\"light\" style=\"text-align: center\">Agrupaciones</ion-title>\r\n        <ion-buttons slot=\"end\">\r\n          <ion-button (click)=\"presentPopover($event)\">\r\n            <ion-icon name=\"more\"></ion-icon>\r\n          </ion-button>\r\n\r\n        </ion-buttons>\r\n      \r\n      </ion-toolbar>\r\n\r\n  <ion-segment [(ngModel)]=\"category\" (ionChange)=\"slides.slideTo(category)\"\r\n    style=\"background-color:mediumpurple\" color=\"light\">\r\n    <ion-segment-button layout=\"icon-start\" value=\"0\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Comparsa</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"1\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Chirigota</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"2\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Coro</ion-label>\r\n    </ion-segment-button>\r\n    <ion-segment-button layout=\"icon-start\" value=\"3\" style=\"--padding-end:0px;--padding-start:0px\">\r\n\r\n      <ion-label>Cuarteto</ion-label>\r\n    </ion-segment-button>\r\n  </ion-segment>\r\n  <div id='indicator' class=\"SwipedTabs-indicatorSegment\" [ngStyle]=\" \r\n  {'width.%': (100/this.tabs.length)}\" style=\"margin-top:2px\"></div>\r\n  \r\n  \r\n  \r\n  \r\n</ion-header>\r\n\r\n<ion-content class=\"fixed-scroll\">\r\n    <ion-slides #slides (ionSlideTransitionStart)=\"updateIndicatorPosition();updateCat(slides.getActiveIndex())\"\r\n    (ionSlideWillChange)=\"updateIndicatorPosition()\" (ionSlideDidChange)=\"updateIndicatorPosition()\" #SwipedTabsSlider\r\n    (ionSlideDrag)=\"animateIndicator($event)\">\r\n    <ion-slide> \r\n      <ion-content >\r\n        <ion-infinite-scroll #infiniteScroll threshold=\"10px\" >\r\n        <ion-list #dynamicList id=\"dynamicList\" >\r\n          <ion-item *ngFor=\"let item of listaAgrupComPanel;let i = index\" >\r\n            <ion-label >\r\n              <h3>{{item.nombre}}</h3>\r\n              <h4>Director: {{item.director}}</h4>\r\n              \r\n            </ion-label>\r\n            <img src=\"../../../assets/img/chir.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n          </ion-item>\r\n  \r\n        </ion-list>\r\n      </ion-infinite-scroll>\r\n      </ion-content>\r\n      </ion-slide>\r\n      \r\n     \r\n    <ion-slide>\r\n      <ion-content class=\"fixed-scroll\">\r\n        <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupChiPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/comp.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n        </ion-infinite-scroll>\r\n      </ion-content>\r\n    </ion-slide>\r\n    <ion-slide>\r\n        <ion-content class=\"fixed-scroll\">\r\n            <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupCoroPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/cor.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n            </ion-infinite-scroll>\r\n        </ion-content>\r\n    </ion-slide>\r\n    <ion-slide>\r\n        <ion-content class=\"fixed-scroll\">\r\n            <ion-infinite-scroll #infiniteScroll threshold=\"10px\">\r\n      <ion-list #dynamicList id=\"dynamicList\">\r\n        <ion-item *ngFor=\"let item of listaAgrupCuarPanel;let i = index\">\r\n          <ion-label >\r\n            <h3>{{item.nombre}}</h3>\r\n            <h4>Director: {{item.director}}</h4>\r\n            \r\n          </ion-label>\r\n          <img src=\"../../../assets/img/cua.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarAgrup(item.key,item.nombre,item.director,item.origen,item.tipo,item.horario)\">\r\n        </ion-item>\r\n\r\n      </ion-list>\r\n            </ion-infinite-scroll>\r\n        </ion-content>\r\n    </ion-slide>\r\n  </ion-slides>\r\n\r\n</ion-content>\r\n\r\n<ion-footer >\r\n    <ion-toolbar color=\"success\">\r\n      <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n    </ion-toolbar>\r\n  </ion-footer>"
 
 /***/ }),
 
@@ -73,7 +76,7 @@ module.exports = "\r\n<ion-header>\r\n    <ion-toolbar color=\"success\" >\r\n  
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@charset \"UTF-8\";\n/* la \"rayita\" que indica la navegación entre slides */\n.SwipedTabs-indicatorSegment {\n  transition: 0s all;\n  -webkit-transform-origin: top 0 left 0;\n          transform-origin: top 0 left 0;\n  height: 2px;\n  position: relative;\n  top: -2px;\n  background-color: var(--ion-color-tertiary) !important; }\n.button-native {\n  padding: 0px !important; }\n/* para que el slide ocupe toda la pantalla */\nion-slide.swiper-slide {\n  display: block; }\n.slides {\n  height: 100%; }\n.fixed-scroll {\n  height: 100% !important;\n  overflow-y: scroll;\n  position: relative; }\n.fixed-scroll ::-webkit-scrollbar {\n    display: none !important; }\n::-webkit-scrollbar,\n*::-webkit-scrollbar {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdGFzL2xpc3Rhcy5wYWdlLnNjc3MiLCJzcmMvYXBwL2xpc3Rhcy9DOlxcVXNlcnNcXERlbGxcXERlc2t0b3BcXGNvcGlhQ2FsbGVqZXJvXFxjYWxsZWplcm8zeDQvc3JjXFxhcHBcXGxpc3Rhc1xcbGlzdGFzLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxnQkFBZ0I7QUNBaEIsc0RBQUE7QUFDQTtFQUlJLGtCQUFtQjtFQUNuQixzQ0FBOEI7VUFBOUIsOEJBQThCO0VBQzlCLFdBQVc7RUFDWCxrQkFBa0I7RUFDbEIsU0FBUztFQUNULHNEQUFzRCxFQUFBO0FBRTFEO0VBQ0ksdUJBQXNCLEVBQUE7QUFFMUIsNkNBQUE7QUFDQTtFQUNJLGNBQWEsRUFBQTtBQUVqQjtFQUNJLFlBQVksRUFBQTtBQUVoQjtFQUNJLHVCQUFxQjtFQUNyQixrQkFBaUI7RUFDakIsa0JBQWlCLEVBQUE7QUFIckI7SUFLUSx3QkFBd0IsRUFBQTtBQUdoQzs7RUFFRSxhQUFhLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9saXN0YXMvbGlzdGFzLnBhZ2Uuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBjaGFyc2V0IFwiVVRGLThcIjtcbi8qIGxhIFwicmF5aXRhXCIgcXVlIGluZGljYSBsYSBuYXZlZ2FjacOzbiBlbnRyZSBzbGlkZXMgKi9cbi5Td2lwZWRUYWJzLWluZGljYXRvclNlZ21lbnQge1xuICAtd2Via2l0LXRyYW5zaXRpb246IDBzIGFsbDtcbiAgLW1vei10cmFuc2l0aW9uOiAwcyBhbGw7XG4gIC1vLXRyYW5zaXRpb246IDBzIGFsbDtcbiAgdHJhbnNpdGlvbjogMHMgYWxsO1xuICB0cmFuc2Zvcm0tb3JpZ2luOiB0b3AgMCBsZWZ0IDA7XG4gIGhlaWdodDogMnB4O1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIHRvcDogLTJweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0taW9uLWNvbG9yLXRlcnRpYXJ5KSAhaW1wb3J0YW50OyB9XG5cbi5idXR0b24tbmF0aXZlIHtcbiAgcGFkZGluZzogMHB4ICFpbXBvcnRhbnQ7IH1cblxuLyogcGFyYSBxdWUgZWwgc2xpZGUgb2N1cGUgdG9kYSBsYSBwYW50YWxsYSAqL1xuaW9uLXNsaWRlLnN3aXBlci1zbGlkZSB7XG4gIGRpc3BsYXk6IGJsb2NrOyB9XG5cbi5zbGlkZXMge1xuICBoZWlnaHQ6IDEwMCU7IH1cblxuLmZpeGVkLXNjcm9sbCB7XG4gIGhlaWdodDogMTAwJSAhaW1wb3J0YW50O1xuICBvdmVyZmxvdy15OiBzY3JvbGw7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTsgfVxuICAuZml4ZWQtc2Nyb2xsIDo6LXdlYmtpdC1zY3JvbGxiYXIge1xuICAgIGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDsgfVxuXG46Oi13ZWJraXQtc2Nyb2xsYmFyLFxuKjo6LXdlYmtpdC1zY3JvbGxiYXIge1xuICBkaXNwbGF5OiBub25lOyB9XG4iLCIvKiBsYSBcInJheWl0YVwiIHF1ZSBpbmRpY2EgbGEgbmF2ZWdhY2nDs24gZW50cmUgc2xpZGVzICovXHJcbi5Td2lwZWRUYWJzLWluZGljYXRvclNlZ21lbnR7XHJcbiAgICAtd2Via2l0LXRyYW5zaXRpb246IDBzIGFsbDtcclxuICAgIC1tb3otdHJhbnNpdGlvbjogIDBzIGFsbDtcclxuICAgIC1vLXRyYW5zaXRpb246ICAwcyBhbGw7XHJcbiAgICB0cmFuc2l0aW9uOiAgMHMgYWxsO1xyXG4gICAgdHJhbnNmb3JtLW9yaWdpbjogdG9wIDAgbGVmdCAwO1xyXG4gICAgaGVpZ2h0OiAycHg7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICB0b3A6IC0ycHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItdGVydGlhcnkpICFpbXBvcnRhbnQ7XHJcbn1cclxuLmJ1dHRvbi1uYXRpdmV7XHJcbiAgICBwYWRkaW5nOjBweCAhaW1wb3J0YW50O1xyXG59XHJcbi8qIHBhcmEgcXVlIGVsIHNsaWRlIG9jdXBlIHRvZGEgbGEgcGFudGFsbGEgKi9cclxuaW9uLXNsaWRlLnN3aXBlci1zbGlkZSB7XHJcbiAgICBkaXNwbGF5OmJsb2NrO1xyXG59XHJcbi5zbGlkZXN7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbn1cclxuLmZpeGVkLXNjcm9sbHtcclxuICAgIGhlaWdodDoxMDAlIWltcG9ydGFudDtcclxuICAgIG92ZXJmbG93LXk6c2Nyb2xsO1xyXG4gICAgcG9zaXRpb246cmVsYXRpdmU7XHJcbiAgICA6Oi13ZWJraXQtc2Nyb2xsYmFyIHtcclxuICAgICAgICBkaXNwbGF5OiBub25lICFpbXBvcnRhbnQ7XHJcbiAgICB9XHJcbn1cclxuOjotd2Via2l0LXNjcm9sbGJhcixcclxuKjo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuXHJcblxyXG5cclxuXHJcblxyXG4iXX0= */"
+module.exports = "@charset \"UTF-8\";\n/* la \"rayita\" que indica la navegación entre slides */\n.SwipedTabs-indicatorSegment {\n  transition: 0s all;\n  -webkit-transform-origin: top 0 left 0;\n          transform-origin: top 0 left 0;\n  height: 2px;\n  position: relative;\n  top: -2px;\n  background-color: var(--ion-color-tertiary) !important; }\n.button-native {\n  padding: 0px !important; }\n/* para que el slide ocupe toda la pantalla */\nion-slide.swiper-slide {\n  display: block; }\n.slides {\n  height: 100%; }\n.fixed-scroll {\n  height: 100% !important;\n  overflow-y: scroll;\n  position: relative; }\n.fixed-scroll ::-webkit-scrollbar {\n    display: none !important; }\n::-webkit-scrollbar,\n*::-webkit-scrollbar {\n  display: none; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdGFzL2xpc3Rhcy5wYWdlLnNjc3MiLCJzcmMvYXBwL2xpc3Rhcy9DOlxcaW9uaWNcXGNhbGxlamVybzN4NC9zcmNcXGFwcFxcbGlzdGFzXFxsaXN0YXMucGFnZS5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQ0FoQixzREFBQTtBQUNBO0VBSUksa0JBQW1CO0VBQ25CLHNDQUE4QjtVQUE5Qiw4QkFBOEI7RUFDOUIsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixTQUFTO0VBQ1Qsc0RBQXNELEVBQUE7QUFFMUQ7RUFDSSx1QkFBc0IsRUFBQTtBQUUxQiw2Q0FBQTtBQUNBO0VBQ0ksY0FBYSxFQUFBO0FBRWpCO0VBQ0ksWUFBWSxFQUFBO0FBRWhCO0VBQ0ksdUJBQXFCO0VBQ3JCLGtCQUFpQjtFQUNqQixrQkFBaUIsRUFBQTtBQUhyQjtJQUtRLHdCQUF3QixFQUFBO0FBR2hDOztFQUVFLGFBQWEsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2xpc3Rhcy9saXN0YXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiQGNoYXJzZXQgXCJVVEYtOFwiO1xuLyogbGEgXCJyYXlpdGFcIiBxdWUgaW5kaWNhIGxhIG5hdmVnYWNpw7NuIGVudHJlIHNsaWRlcyAqL1xuLlN3aXBlZFRhYnMtaW5kaWNhdG9yU2VnbWVudCB7XG4gIC13ZWJraXQtdHJhbnNpdGlvbjogMHMgYWxsO1xuICAtbW96LXRyYW5zaXRpb246IDBzIGFsbDtcbiAgLW8tdHJhbnNpdGlvbjogMHMgYWxsO1xuICB0cmFuc2l0aW9uOiAwcyBhbGw7XG4gIHRyYW5zZm9ybS1vcmlnaW46IHRvcCAwIGxlZnQgMDtcbiAgaGVpZ2h0OiAycHg7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgdG9wOiAtMnB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1pb24tY29sb3ItdGVydGlhcnkpICFpbXBvcnRhbnQ7IH1cblxuLmJ1dHRvbi1uYXRpdmUge1xuICBwYWRkaW5nOiAwcHggIWltcG9ydGFudDsgfVxuXG4vKiBwYXJhIHF1ZSBlbCBzbGlkZSBvY3VwZSB0b2RhIGxhIHBhbnRhbGxhICovXG5pb24tc2xpZGUuc3dpcGVyLXNsaWRlIHtcbiAgZGlzcGxheTogYmxvY2s7IH1cblxuLnNsaWRlcyB7XG4gIGhlaWdodDogMTAwJTsgfVxuXG4uZml4ZWQtc2Nyb2xsIHtcbiAgaGVpZ2h0OiAxMDAlICFpbXBvcnRhbnQ7XG4gIG92ZXJmbG93LXk6IHNjcm9sbDtcbiAgcG9zaXRpb246IHJlbGF0aXZlOyB9XG4gIC5maXhlZC1zY3JvbGwgOjotd2Via2l0LXNjcm9sbGJhciB7XG4gICAgZGlzcGxheTogbm9uZSAhaW1wb3J0YW50OyB9XG5cbjo6LXdlYmtpdC1zY3JvbGxiYXIsXG4qOjotd2Via2l0LXNjcm9sbGJhciB7XG4gIGRpc3BsYXk6IG5vbmU7IH1cbiIsIi8qIGxhIFwicmF5aXRhXCIgcXVlIGluZGljYSBsYSBuYXZlZ2FjacOzbiBlbnRyZSBzbGlkZXMgKi9cclxuLlN3aXBlZFRhYnMtaW5kaWNhdG9yU2VnbWVudHtcclxuICAgIC13ZWJraXQtdHJhbnNpdGlvbjogMHMgYWxsO1xyXG4gICAgLW1vei10cmFuc2l0aW9uOiAgMHMgYWxsO1xyXG4gICAgLW8tdHJhbnNpdGlvbjogIDBzIGFsbDtcclxuICAgIHRyYW5zaXRpb246ICAwcyBhbGw7XHJcbiAgICB0cmFuc2Zvcm0tb3JpZ2luOiB0b3AgMCBsZWZ0IDA7XHJcbiAgICBoZWlnaHQ6IDJweDtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHRvcDogLTJweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IHZhcigtLWlvbi1jb2xvci10ZXJ0aWFyeSkgIWltcG9ydGFudDtcclxufVxyXG4uYnV0dG9uLW5hdGl2ZXtcclxuICAgIHBhZGRpbmc6MHB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuLyogcGFyYSBxdWUgZWwgc2xpZGUgb2N1cGUgdG9kYSBsYSBwYW50YWxsYSAqL1xyXG5pb24tc2xpZGUuc3dpcGVyLXNsaWRlIHtcclxuICAgIGRpc3BsYXk6YmxvY2s7XHJcbn1cclxuLnNsaWRlc3tcclxuICAgIGhlaWdodDogMTAwJTtcclxufVxyXG4uZml4ZWQtc2Nyb2xse1xyXG4gICAgaGVpZ2h0OjEwMCUhaW1wb3J0YW50O1xyXG4gICAgb3ZlcmZsb3cteTpzY3JvbGw7XHJcbiAgICBwb3NpdGlvbjpyZWxhdGl2ZTtcclxuICAgIDo6LXdlYmtpdC1zY3JvbGxiYXIge1xyXG4gICAgICAgIGRpc3BsYXk6IG5vbmUgIWltcG9ydGFudDtcclxuICAgIH1cclxufVxyXG46Oi13ZWJraXQtc2Nyb2xsYmFyLFxyXG4qOjotd2Via2l0LXNjcm9sbGJhciB7XHJcbiAgZGlzcGxheTogbm9uZTtcclxufVxyXG5cclxuXHJcblxyXG5cclxuXHJcbiJdfQ== */"
 
 /***/ }),
 
@@ -92,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
 /* harmony import */ var _modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../modal/modal/modal.page */ "./src/app/modal/modal/modal.page.ts");
+/* harmony import */ var _pop_over_menu_pop_over_menu_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../pop-over-menu/pop-over-menu.component */ "./src/app/pop-over-menu/pop-over-menu.component.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -152,14 +156,16 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var ListasPage = /** @class */ (function () {
-    function ListasPage(loadingController, router, modalCont, actionSheetController, cloud, toast) {
+    function ListasPage(loadingController, router, modalCont, actionSheetController, cloud, toast, popoverController) {
         this.loadingController = loadingController;
         this.router = router;
         this.modalCont = modalCont;
         this.actionSheetController = actionSheetController;
         this.cloud = cloud;
         this.toast = toast;
+        this.popoverController = popoverController;
         // Slides
         this.SwipedTabsIndicator = null;
         this.tabs = ["selectTab(0)", "selectTab(1)", "selectTab(2)", "selectTab(3)"];
@@ -478,6 +484,23 @@ var ListasPage = /** @class */ (function () {
                 ((e.target.swiper.progress * (this.ntabs - 1)) * 100) + '%,0,0)';
         }
     };
+    ListasPage.prototype.presentPopover = function (event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var popver;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.popoverController.create({
+                            component: _pop_over_menu_pop_over_menu_component__WEBPACK_IMPORTED_MODULE_5__["PopOverMenuComponent"],
+                            event: event
+                        })];
+                    case 1:
+                        popver = _a.sent();
+                        return [4 /*yield*/, popver.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('SwipedTabsSlider'),
         __metadata("design:type", _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["IonSlides"])
@@ -501,9 +524,96 @@ var ListasPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ActionSheetController"],
             _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__["CloudServiceService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["PopoverController"]])
     ], ListasPage);
     return ListasPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/pop-over-menu/pop-over-menu.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/pop-over-menu/pop-over-menu.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-content>\r\n  <ion-list>\r\n    \r\n    <ion-item (click)=\"logout()\">\r\n      Logout\r\n    </ion-item>\r\n  </ion-list>\r\n</ion-content>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/pop-over-menu/pop-over-menu.component.scss":
+/*!************************************************************!*\
+  !*** ./src/app/pop-over-menu/pop-over-menu.component.scss ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3BvcC1vdmVyLW1lbnUvcG9wLW92ZXItbWVudS5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/pop-over-menu/pop-over-menu.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/pop-over-menu/pop-over-menu.component.ts ***!
+  \**********************************************************/
+/*! exports provided: PopOverMenuComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopOverMenuComponent", function() { return PopOverMenuComponent; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PopOverMenuComponent = /** @class */ (function () {
+    function PopOverMenuComponent(events, navParams, popoverController, auth, router) {
+        this.events = events;
+        this.navParams = navParams;
+        this.popoverController = popoverController;
+        this.auth = auth;
+        this.router = router;
+    }
+    PopOverMenuComponent.prototype.ngOnInit = function () {
+        //Get data from popover page
+        // this.page = this.navParams.get('data');
+    };
+    PopOverMenuComponent.prototype.logout = function () {
+        // code for logout
+        this.auth.logoutUser();
+        this.popoverController.dismiss();
+        this.router.navigate(['autenticacion']);
+    };
+    PopOverMenuComponent = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-pop-over-menu',
+            template: __webpack_require__(/*! ./pop-over-menu.component.html */ "./src/app/pop-over-menu/pop-over-menu.component.html"),
+            styles: [__webpack_require__(/*! ./pop-over-menu.component.scss */ "./src/app/pop-over-menu/pop-over-menu.component.scss")]
+        }),
+        __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["Events"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["PopoverController"],
+            _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], PopOverMenuComponent);
+    return PopOverMenuComponent;
 }());
 
 

@@ -13,7 +13,8 @@ export const environment = {
     storageBucket: "callejero-9db30.appspot.com",
     messagingSenderId: "768784275736",
     AgrupCollection:"Agrupaciones",
-    AgrupUbica:"Ubicaciones"
+    AgrupUbica:"Ubicaciones",
+    AgrupComen:"Comentarios",
   },
   defaultAgrup: "Empty data base.",
   currentLanguages:['es','en'],

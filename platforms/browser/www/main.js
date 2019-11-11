@@ -837,6 +837,14 @@ module.exports = webpackAsyncContext;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"./auth/autenticacion/autenticacion.module": [
+		"./src/app/auth/autenticacion/autenticacion.module.ts",
+		"auth-autenticacion-autenticacion-module"
+	],
+	"./auth/registro/registro.module": [
+		"./src/app/auth/registro/registro.module.ts",
+		"auth-registro-registro-module"
+	],
 	"./home/home.module": [
 		"./src/app/home/home.module.ts",
 		"home-home-module"
@@ -907,6 +915,8 @@ var routes = [
     { path: 'modal', loadChildren: './modal/modal/modal.module#ModalPageModule' },
     { path: 'mapa', loadChildren: './modal/mapa/mapa.module#MapaPageModule' },
     { path: 'mapa-principal', loadChildren: './mapaPrincipal/mapa-principal/mapa-principal.module#MapaPrincipalPageModule' },
+    { path: 'autenticacion', loadChildren: './auth/autenticacion/autenticacion.module#AutenticacionPageModule' },
+    { path: 'registro', loadChildren: './auth/registro/registro.module#RegistroPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -931,7 +941,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-router-outlet></ion-router-outlet>\n</ion-app>\n"
+module.exports = "<ion-app>\r\n  <ion-router-outlet></ion-router-outlet>\r\n</ion-app>\r\n"
 
 /***/ }),
 
@@ -1022,6 +1032,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var angularfire2_database__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(angularfire2_database__WEBPACK_IMPORTED_MODULE_11__);
 /* harmony import */ var _modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modal/modal/modal.page */ "./src/app/modal/modal/modal.page.ts");
 /* harmony import */ var _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./modal/mapa/mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
+/* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/geolocation/ngx */ "./node_modules/@ionic-native/geolocation/ngx/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1042,6 +1058,12 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
+
+
+
+firebase__WEBPACK_IMPORTED_MODULE_16__["initializeApp"](src_environments_environment__WEBPACK_IMPORTED_MODULE_10__["environment"].firebaseConfig);
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -1053,11 +1075,15 @@ var AppModule = /** @class */ (function () {
                 _angular_fire__WEBPACK_IMPORTED_MODULE_8__["AngularFireModule"],
                 angularfire2_database__WEBPACK_IMPORTED_MODULE_11__["AngularFireDatabaseModule"],
                 _angular_fire__WEBPACK_IMPORTED_MODULE_8__["AngularFireModule"].initializeApp(src_environments_environment__WEBPACK_IMPORTED_MODULE_10__["environment"].firebaseConfig),
+                _angular_forms__WEBPACK_IMPORTED_MODULE_17__["ReactiveFormsModule"],
                 angularfire2_firestore__WEBPACK_IMPORTED_MODULE_9__["AngularFirestoreModule"],
+                _angular_fire_auth__WEBPACK_IMPORTED_MODULE_15__["AngularFireAuthModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
+                _services_auth_service__WEBPACK_IMPORTED_MODULE_14__["AuthService"],
+                _ionic_native_geolocation_ngx__WEBPACK_IMPORTED_MODULE_18__["Geolocation"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicRouteStrategy"] },
                 angularfire2_firestore__WEBPACK_IMPORTED_MODULE_9__["AngularFirestore"],
             ],
@@ -1078,7 +1104,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header>\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\n  crossorigin=\"\"/>\n <!--\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\n -->\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\n   crossorigin=\"\"></script>\n  \n</ion-header>\n<ion-content >\n\n\n    <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\n \n</ion-content>\n\n"
+module.exports = "\r\n<ion-header>\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\r\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\r\n  crossorigin=\"\"/>\r\n <!--\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\r\n -->\r\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\r\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\r\n   crossorigin=\"\"></script>\r\n  \r\n</ion-header>\r\n<ion-content >\r\n\r\n\r\n    <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\r\n \r\n</ion-content>\r\n\r\n"
 
 /***/ }),
 
@@ -1224,9 +1250,6 @@ var MapaPage = /** @class */ (function () {
     MapaPage.prototype.ionViewWillLeave = function () {
         this.map.remove();
     };
-    MapaPage.prototype.cerrar = function () {
-        this.modalCon.dismiss();
-    };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('map2'),
         __metadata("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ElementRef"])
@@ -1258,7 +1281,7 @@ var MapaPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n    <ion-toolbar color=\"success\">\n      \n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\n            </ion-button>\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\n      \n   \n    </ion-toolbar>\n  </ion-header>\n  \n  <ion-content>\n      <ion-card style=\"background-color:yellow\">\n          <ion-card-header>\n            \n            <ion-card-title>Nombre</ion-card-title>\n          </ion-card-header>\n         \n        \n          <ion-card-content style=\"font-size: 30px\">\n           {{nombre}}\n          </ion-card-content>\n        </ion-card>\n        <ion-card style=\"background-color: lightsalmon\">\n            <ion-card-header>\n              \n              <ion-card-title>Director</ion-card-title>\n            </ion-card-header>\n          \n            <ion-card-content style=\"font-size: 30px\">\n             {{director}}\n            </ion-card-content>\n          </ion-card>\n          <ion-card style=\"background-color: orange\">\n              <ion-card-header>\n                \n                <ion-card-title>Origen</ion-card-title>\n              </ion-card-header>\n            \n              <ion-card-content style=\"font-size: 30px\">\n               {{origen}}\n              </ion-card-content>\n            </ion-card>\n        \n          <ion-card style=\"background-color:orangered\">\n              <ion-card-header>\n                \n                <ion-card-title>Horario</ion-card-title>\n              </ion-card-header>\n            \n              <ion-card-content >\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\n               {{item.horario}}\n               {{item.ubicacionnombre}}\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarUbi(item.ubicacionnombre,item.ubicacionpos)\">\n               </ion-item>\n              </ion-card-content>\n            </ion-card>\n    \n          </ion-content> \n        \n  \n\n  <ion-footer >\n      <ion-toolbar color=\"success\">\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\n      </ion-toolbar>\n    </ion-footer>\n"
+module.exports = "<ion-header>\r\n    <ion-toolbar color=\"success\">\r\n      \r\n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\r\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\r\n            </ion-button>\r\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\r\n      \r\n   \r\n    </ion-toolbar>\r\n  </ion-header>\r\n  \r\n  <ion-content>\r\n      <ion-card style=\"background-color:yellow\">\r\n          <ion-card-header>\r\n            \r\n            <ion-card-title>Nombre</ion-card-title>\r\n          </ion-card-header>\r\n         \r\n        \r\n          <ion-card-content style=\"font-size: 30px\">\r\n           {{nombre}}\r\n          </ion-card-content>\r\n        </ion-card>\r\n        <ion-card style=\"background-color: lightsalmon\">\r\n            <ion-card-header>\r\n              \r\n              <ion-card-title>Director</ion-card-title>\r\n            </ion-card-header>\r\n          \r\n            <ion-card-content style=\"font-size: 30px\">\r\n             {{director}}\r\n            </ion-card-content>\r\n          </ion-card>\r\n          <ion-card style=\"background-color: orange\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Origen</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content style=\"font-size: 30px\">\r\n               {{origen}}\r\n              </ion-card-content>\r\n            </ion-card>\r\n        \r\n          <ion-card style=\"background-color:orangered\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Horario</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content >\r\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\r\n               {{item.horario}}\r\n               {{item.ubicacionnombre}}\r\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"navigateLocation(item.ubicacionnombre,item.ubicacionpos)\">\r\n               </ion-item>\r\n              </ion-card-content>\r\n            </ion-card>\r\n    \r\n          </ion-content> \r\n        \r\n  \r\n\r\n  <ion-footer >\r\n      <ion-toolbar color=\"success\">\r\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n      </ion-toolbar>\r\n    </ion-footer>\r\n"
 
 /***/ }),
 
@@ -1287,7 +1310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
-/* harmony import */ var _mapa_mapa_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mapa/mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
+/* harmony import */ var _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/launch-navigator/ngx */ "./node_modules/@ionic-native/launch-navigator/ngx/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1338,25 +1361,30 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 var ModalPage = /** @class */ (function () {
-    function ModalPage(modalCon, cloud, router, loadingContr, navPar, modalCont) {
+    function ModalPage(modalCon, cloud, router, loadingContr, navPar, modalCont, geo, lg) {
+        //comprobar en oninit
         this.modalCon = modalCon;
         this.cloud = cloud;
         this.router = router;
         this.loadingContr = loadingContr;
         this.navPar = navPar;
         this.modalCont = modalCont;
+        this.geo = geo;
+        this.lg = lg;
         this.listado = [];
         this.listadoPanel = [];
         this.horario = [];
         this.agrupList = [];
+    }
+    ModalPage.prototype.ngOnInit = function () {
         this.nombre = this.navPar.get('nombre');
         this.key = this.navPar.get('key');
         this.origen = this.navPar.get('origen');
         this.tipo = this.navPar.get('tipo');
         this.director = this.navPar.get('director');
         this.horario = this.navPar.get('horario');
-    }
-    ModalPage.prototype.ngOnInit = function () {
+        this.ubiPos = this.navPar.get('horario').ubicacionpos;
+        this.nomUbi = this.navPar.get('horario').ubicacionnombre;
     };
     ModalPage.prototype.presentLoading = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -1379,25 +1407,33 @@ var ModalPage = /** @class */ (function () {
     ModalPage.prototype.cerrar = function () {
         this.modalCon.dismiss();
     };
-    ModalPage.prototype.mostrarUbi = function (ubicacionnombre, ubicacionpos) {
-        return __awaiter(this, void 0, void 0, function () {
-            var modal;
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.modalCont.create({
-                            component: _mapa_mapa_page__WEBPACK_IMPORTED_MODULE_4__["MapaPage"],
-                            cssClass: 'mapa',
-                            componentProps: {
-                                ubicacionnombre: ubicacionnombre,
-                                ubicacionpos: ubicacionpos
-                            },
-                        })];
-                    case 1:
-                        modal = _a.sent();
-                        return [4 /*yield*/, modal.present()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
+    /*
+          async mostrarUbi(ubicacionnombre,ubicacionpos){
+            const modal=await this.modalCont.create({
+        component: MapaPage,
+        cssClass: 'mapa',
+        componentProps:{
+         ubicacionnombre:ubicacionnombre,
+         ubicacionpos:ubicacionpos
+       
+        
+        },
             });
+         return await modal.present();
+          }
+          */
+    ModalPage.prototype.navigateLocation = function (ubicacionnombre, ubicacionpos) {
+        ubicacionnombre = ubicacionnombre;
+        ubicacionpos = ubicacionpos;
+        var options = {
+            start: [ubicacionpos._lat, ubicacionpos._long],
+            app: this.lg.APP.GOOGLE_MAPS
+        };
+        this.lg.navigate(ubicacionnombre, options)
+            .then(function (success) {
+            console.log(success);
+        }, function (error) {
+            console.log(error);
         });
     };
     ModalPage = __decorate([
@@ -1411,9 +1447,76 @@ var ModalPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["LoadingController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavParams"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"], Object, _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_4__["LaunchNavigator"]])
     ], ModalPage);
     return ModalPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/auth.service.ts":
+/*!******************************************!*\
+  !*** ./src/app/services/auth.service.ts ***!
+  \******************************************/
+/*! exports provided: AuthService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return AuthService; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_1__);
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var AuthService = /** @class */ (function () {
+    function AuthService() {
+    }
+    AuthService.prototype.registerUser = function (value) {
+        return new Promise(function (resolve, reject) {
+            firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().createUserWithEmailAndPassword(value.email, value.password)
+                .then(function (res) { return resolve(res); }, function (err) { return reject(err); });
+        });
+    };
+    AuthService.prototype.loginUser = function (value) {
+        return new Promise(function (resolve, reject) {
+            firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().signInWithEmailAndPassword(value.email, value.password)
+                .then(function (res) { return resolve(res); }, function (err) { return reject(err); });
+        });
+    };
+    AuthService.prototype.logoutUser = function () {
+        return new Promise(function (resolve, reject) {
+            if (firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().currentUser) {
+                firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().signOut()
+                    .then(function () {
+                    resolve();
+                }).catch(function (error) {
+                    reject();
+                });
+            }
+        });
+    };
+    AuthService.prototype.userDetails = function () {
+        return firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().currentUser;
+    };
+    AuthService = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
+            providedIn: 'root'
+        }),
+        __metadata("design:paramtypes", [])
+    ], AuthService);
+    return AuthService;
 }());
 
 
@@ -1472,9 +1575,9 @@ var BackbuttonService = /** @class */ (function () {
                     if (_this.currentURL == "/modal") {
                         _this.navCtrl.navigateRoot(['/listas'], { animationDirection: "back" });
                         if (_this.currentURL == "/listas") {
-                            _this.navCtrl.navigateRoot(['/mapaPrincipal'], { animationDirection: "back" });
+                            _this.navCtrl.navigateRoot(['/mapa-principal'], { animationDirection: "back" });
                         }
-                        if (_this.navCtrl.navigateRoot(['/mapaPrincipal'])) {
+                        if (_this.navCtrl.navigateRoot(['/mapa-principal'])) {
                             navigator['app'].exitApp();
                         }
                     }
@@ -1673,7 +1776,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Dell\Desktop\copiaCallejero\callejero3x4\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\ionic\callejero3x4\src\main.ts */"./src/main.ts");
 
 
 /***/ })

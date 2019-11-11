@@ -62,7 +62,7 @@ var MapaPrincipalPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\n  crossorigin=\"\"/>\n <!--\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\n -->\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\n   crossorigin=\"\"></script>\n  \n</ion-header>\n<ion-content>\n\n\n    <div id=\"map\" #map style=\"width:100%;height:100%\"></div>\n \n    <ion-fab  vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\n     \n          <img src=\"../../assets/img/puertas.png\" style=\"width:60px;margin:0px;background-color: purple\" (click)=\"irListas()\">\n      \n      \n       \n      \n    </ion-fab>\n</ion-content>\n"
+module.exports = "<ion-header>\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\r\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\r\n  crossorigin=\"\"/>\r\n <!--\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\r\n -->\r\n <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\r\n   integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\r\n   crossorigin=\"\"></script>\r\n  \r\n</ion-header>\r\n<ion-content>\r\n\r\n\r\n    <div id=\"map\" #map style=\"width:100%;height:100%\"></div>\r\n \r\n    <ion-fab  vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n     \r\n          <img src=\"../../assets/img/puertas.png\" style=\"width:60px;margin:0px;background-color: purple\" (click)=\"irListas()\">\r\n    \r\n    </ion-fab>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -209,18 +209,6 @@ var MapaPrincipalPage = /** @class */ (function () {
             maxZoom: 18,
             minZoom: 10
         }).addTo(this.map);
-        //marker([ 37.8915500,-4.7727500],{draggable: true}).addTo(this.map);
-        /**
-         * fetch('./assets/data/posAgrupa.json').then(res => res.json())
-            .then(json => {
-              this.agrupList = json.properties;
-              for (const property of this.agrupList) {
-                marker([property.lat, property.long]).addTo(this.map)
-                  .bindPopup(property.place)
-                  .openPopup();
-              }
-            });
-        */
         this.cloud.getUbicaciones()
             .then(function (datos) {
             _this.agrupUbi = [];
@@ -231,9 +219,6 @@ var MapaPrincipalPage = /** @class */ (function () {
                     .openPopup();
             });
         });
-        setTimeout(function () {
-            //this.map.invalidateSize();
-        }, 5000);
     };
     MapaPrincipalPage.prototype.ionViewWillLeave = function () {
         this.map.remove();

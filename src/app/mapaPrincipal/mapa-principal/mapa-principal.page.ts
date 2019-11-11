@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { NavController, LoadingController } from '@ionic/angular';
+import { NavController, LoadingController, ModalController } from '@ionic/angular';
 
 import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
 import { CloudServiceService } from '../../services/cloud-service.service';
+import { MapaPage } from 'src/app/modal/mapa/mapa.page';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class MapaPrincipalPage {
     public navCtrl: NavController,
     private router: Router,
     private cloud: CloudServiceService,
-    private loading:LoadingController
+    private loading:LoadingController,
+    private modalCont: ModalController
   ) { }
 
  /**
@@ -83,6 +85,8 @@ this.agrupUbi.push({id:doc.id, ...doc.data()});
 marker([doc.data().pos._lat, doc.data().pos._long],{icon:this.icon}).addTo(this.map)
           .bindPopup(doc.data().nombre)
           .openPopup();
+          
+         
 
 });
 
@@ -101,6 +105,19 @@ marker([doc.data().pos._lat, doc.data().pos._long],{icon:this.icon}).addTo(this.
     this.map.remove();
   }
 
+  async mostrarUbi(ubicacionnombre,ubicacionpos){
+    const modal=await this.modalCont.create({
+component: MapaPage,
+cssClass: 'mapa',
+componentProps:{
+ ubicacionnombre:ubicacionnombre,
+ ubicacionpos:ubicacionpos
+
+
+},
+    });
+ return await modal.present();
+  }
   
   irListas(){
     this.router.navigate(['listas']);

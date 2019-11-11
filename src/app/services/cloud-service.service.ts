@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { environment } from '../../environments/environment';
+import { enterView } from '@angular/core/src/render3/state';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ export class CloudServiceService {
 
   AgrupCol: AngularFirestoreCollection<any>;
   AgrupUbi: AngularFirestoreCollection<any>;
+  AgrupComen: AngularFirestoreCollection<any>;
 
   lastAgrupLoader=null;
   lastlasAgrupLoader=null;
@@ -19,6 +21,7 @@ export class CloudServiceService {
 
     this.AgrupCol=fireStone.collection<any>(environment.firebaseConfig.AgrupCollection);
     this.AgrupUbi=fireStone.collection<any>(environment.firebaseConfig.AgrupUbica);
+    this.AgrupComen=fireStone.collection<any>(environment.firebaseConfig.AgrupComen);
 
 
    }
@@ -77,5 +80,34 @@ export class CloudServiceService {
   getUbiPotro():Promise<any>{
     return this.AgrupUbi.ref.where("nombre","==","Plaza del Potro").get();
   }
+
+  /**
+   * Metodos CRUD de comentarios.
+   */
+/*añadir comentarios*/
+   addComentario(datos){
+return this.AgrupComen.add(datos);
+   }
+/*Eliminar Comentario. */
+   delComentario(id){
+     return this.AgrupComen.doc(id).delete();
+
+   }
+   updateComentario(id,data){
+     return this.AgrupComen.doc(id).set(data);
+
+   }
+
+   /**
+    * Metodos para obtener los comentarios.
+    */
+
+    getComentarioUsuario(usuario){
+return this.AgrupComen.ref.where("usuario","==",usuario).get()
+    }
+    getComentarioAgrupacion(nombreAgrup){
+      return this.AgrupComen.ref.where("nombre","==",nombreAgrup).get()
+    }
+
   
 }

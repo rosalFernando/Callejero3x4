@@ -23,6 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 
 
+
+
+
 firebase.initializeApp(environment.firebaseConfig);
 
 
@@ -36,11 +39,11 @@ firebase.initializeApp(environment.firebaseConfig);
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule,
     AngularFireDatabaseModule,
-    
     AngularFireModule.initializeApp(environment.firebaseConfig),
     ReactiveFormsModule,
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    
   
     
   
@@ -50,6 +53,9 @@ firebase.initializeApp(environment.firebaseConfig);
     StatusBar,
     SplashScreen,
     AuthService,
+   
+    
+    
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AngularFirestore,
   ],

@@ -10,6 +10,8 @@ const routes: Routes = [
   { path: 'mapa', loadChildren: './modal/mapa/mapa.module#MapaPageModule' },
   { path: 'mapa-principal', loadChildren: './mapaPrincipal/mapa-principal/mapa-principal.module#MapaPrincipalPageModule' },  { path: 'autenticacion', loadChildren: './auth/autenticacion/autenticacion.module#AutenticacionPageModule' },
   { path: 'registro', loadChildren: './auth/registro/registro.module#RegistroPageModule' },
+  { path: 'crud-comentario', loadChildren: './modal/crud-comentario/crud-comentario.module#CrudComentarioPageModule' },
+  { path: 'mis-comentarios', loadChildren: './modal/mis-comentarios/mis-comentarios.module#MisComentariosPageModule' },
 
 ];
 

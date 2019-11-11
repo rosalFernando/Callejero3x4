@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef, NgModule } from '@angular/core';
 
 import { NavController, ModalController, NavParams, LoadingController } from '@ionic/angular';
-
-import { Map, latLng, tileLayer, Layer, marker } from 'leaflet';
+import { Map, latLng, tileLayer, Layer, marker, routing,  } from 'leaflet';
 import { Router } from '@angular/router';
 import * as L from 'leaflet';
+import 'leaflet-routing-machine';
 import { CloudServiceService } from '../../services/cloud-service.service';
-import { _document } from '@angular/platform-browser/src/browser';
+
+
 
 
 @Component({
@@ -26,6 +27,7 @@ export class MapaPage {
   long:any;
   icon:any;
   
+
   listaPos=[];
  
 
@@ -34,7 +36,8 @@ export class MapaPage {
     private cloud: CloudServiceService,
     public modalCon: ModalController,
     private navPar: NavParams,
-    private loading:LoadingController) { 
+    private loading:LoadingController,
+    ) { 
 
 
       this.ubicacionnombre=this.navPar.get('ubicacionnombre');
@@ -69,7 +72,24 @@ export class MapaPage {
    * Metodo que carga un mapa con unas coordenadas predifinidas.
    */
  
-  loadmap() {
+  async loadmap() {
+   return await navigator.geolocation.getCurrentPosition((pos)=>{
+      var map = L.map('map2');
+
+      L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}{r}.png', {
+          attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
+      
+      L.Routing.control({
+        
+          waypoints: [
+              L.latLng(pos.coords.latitude, pos.coords.longitude),
+              L.latLng(this.lat,this.long)
+          ],
+          routeWhileDragging: true
+      }).addTo(map);
+    })
+    /*
     console.log("Cargando mapa...")
     this.icon=L.icon({
       iconUrl: '../../../assets/img/plumas.png',
@@ -81,35 +101,37 @@ shadowAnchor: [4, 62],  // the same for the shadow
 popupAnchor: [-3, -76] // point from which the popup should open relative..
     });
       
-    this.map = new Map("map2",{center:[this.lat,this.long]}).setView([ this.lat,this.long],
+    this.map = new L.Map("map2",{center:[this.lat,this.long]}).setView([ this.lat,this.long],
       14);
-    
+   
     tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       
       maxZoom: 18,
       minZoom:10,
-      
-     
-      
+   
     }).addTo(this.map);
 
-    
-
+  navigator.geolocation.getCurrentPosition((pos)=>{
     marker([this.lat,this.long],{icon:this.icon}).addTo(this.map)
-   
-    
-          .bindPopup(this.ubicacionnombre)
+   .bindPopup(this.ubicacionnombre)
           .openPopup();
 
-  
+    L.Routing.control({
+      waypoints:[
+      L.latLng(pos.coords.latitude,pos.coords.longitude),
+        L.latLng(this.lat,this.long)
+      ],
+      
+    }).addTo(this.map)
+  })
+    */
+
 
   }
-
-
-  
-  ionViewWillLeave() {
-    this.map.remove();
+  cierraMapa(){
+    this.modalCon.dismiss()
   }
+
 
 
 }

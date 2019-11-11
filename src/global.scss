@@ -12,11 +12,17 @@
 
 ion-modal.mapa {
     div.modal-wrapper {
-        height: 50% !important;
-        width:  70% !important;
+        height: 100% !important;
+        width:  100% !important;
         
     }
+    div.leaflet-routing-container{
+        height: 50% !important;
+        width:  100% !important;
+    }
 }
+
+
 
 .imagen{
     width: 100%; 

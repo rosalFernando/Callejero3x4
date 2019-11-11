@@ -61,7 +61,7 @@ var HomePageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<ion-content class=\"fixed-scroll\" >\r\n    \r\n   \r\n    <img class=\"imagen\" src=\"../../../assets/img/portada.png\"  >\r\n\r\n     \r\n\r\n       \r\n        \r\n        \r\n        \r\n        \r\n</ion-content>\r\n\r\n"
+module.exports = "\r\n<ion-content class=\"content\" >\r\n \r\n<img class=\"imagen\" src=\"../../../assets/img/portada.png\"  >\r\n\r\n\r\n</ion-content>\r\n\r\n"
 
 /***/ }),
 
@@ -109,14 +109,13 @@ var HomePage = /** @class */ (function () {
     }
     HomePage.prototype.ionViewWillEnter = function () {
         var _this = this;
-        console.log("dentro will enter");
         setTimeout(function () {
-            _this.irMapa();
-        }, 2000);
+            _this.irAuth();
+        }, 3000);
     };
-    HomePage.prototype.irMapa = function () {
-        this.router.navigate(['mapa-principal']);
-        console.log("dentro irMapa");
+    HomePage.prototype.irAuth = function () {
+        this.router.navigate(['autenticacion']);
+        console.log("dentro autenticacion");
     };
     HomePage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
