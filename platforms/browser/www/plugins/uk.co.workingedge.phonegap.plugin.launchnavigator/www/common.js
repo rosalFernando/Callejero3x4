@@ -1,4 +1,5 @@
-cordova.define("uk.co.workingedge.phonegap.plugin.launchnavigator.Common", function(require, exports, module) { /*
+cordova.define("uk.co.workingedge.phonegap.plugin.launchnavigator.Common", function(require, exports, module) {
+/*
  * Copyright (c) 2014 Dave Alden  (http://github.com/dpa99c)
  * Copyright (c) 2014 Working Edge Ltd. (http://www.workingedge.co.uk)
  *

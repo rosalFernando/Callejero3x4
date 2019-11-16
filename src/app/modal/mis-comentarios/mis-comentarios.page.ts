@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Events, NavParams, PopoverController, ModalController, ToastController } from '@ionic/angular';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Events,  PopoverController, ModalController, ToastController, IonInfiniteScroll, AlertController, NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { CloudServiceService } from 'src/app/services/cloud-service.service';
+import { CrudComentarioPage } from '../crud-comentario/crud-comentario.page';
 
 @Component({
   selector: 'app-mis-comentarios',
@@ -10,6 +11,9 @@ import { CloudServiceService } from 'src/app/services/cloud-service.service';
   styleUrls: ['./mis-comentarios.page.scss'],
 })
 export class MisComentariosPage implements OnInit {
+
+  @ViewChild('infiniteScroll') ionInfiniteScroll: IonInfiniteScroll;
+  @ViewChild('dynamicList') dynamicList;
 
   usuario;
   agrupacion;
@@ -28,33 +32,78 @@ export class MisComentariosPage implements OnInit {
     private modaCont: ModalController,
     private cloud: CloudServiceService,
     private toast:ToastController,
+    private alertCtrl: AlertController,
+    private navCon: NavController,
+  
   ) { }
 
   ngOnInit() {
     
-    this.cloud.getComentarioUsuario(this.auth.userDetails().email).then((doc)=>{
+    this.cloud.getComentarioUsuario(this.auth.userDetails().email)
+    .then((doc)=>{
       this.listaComentarios=[];
       doc.forEach((comen)=>{
-        this.listaComentarios.push({id:comen.id, ...comen})
+        this.listaComentarios.push({id:comen.id, ...comen.data()})
       });
       this.listaComentariosPane=this.listaComentarios
      })
 
   }
 
-  delComentarios(id){
-    this.cloud.delComentario(id)
-    .then(()=>{
-      this.presentToast('comentarios eliminado')
-    })
-    .catch(()=>{
-      this.presentToast('Error eliminar.')
-    })
+  async borrarNota(Item) {
+
     
-  }
-  modComentario(){
-    this.cloud.updateComentario(this.key,this.comentario)
-  }
+    let alert = await this.alertCtrl.create({
+      header: 'Eliminar',
+      message: 'Desea Eliminar?',
+      buttons: [
+        {
+          text: 'Ups, no no ',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'que zi pezao!',
+          handler: () => {
+
+            this.cloud.delComentario(Item);
+
+            this.cloud.getComentarioUsuario(this.auth.userDetails().email)
+            .then((doc)=>{
+              this.listaComentarios=[];
+              doc.forEach((comen)=>{
+                this.listaComentarios.push({id:comen.id, ...comen.data()})
+              });
+              this.listaComentariosPane=this.listaComentarios
+            
+              
+            });
+
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+     await alert.present();
+
+}
+doRefresh(event) {
+  this.cloud.getComentarioUsuario(this.auth.userDetails().email)
+    .then((doc)=>{
+      this.listaComentarios=[];
+      doc.forEach((comen)=>{
+        this.listaComentarios.push({id:comen.id, ...comen.data()})
+      });
+      this.listaComentariosPane=this.listaComentarios
+    
+      
+    });
+    event.target.complete();
+}
+  
 
   async presentToast(msg) {
     const toast = await this.toast.create({
@@ -63,5 +112,25 @@ export class MisComentariosPage implements OnInit {
     });
     toast.present();
   }
+
+ async crudComentario(id,comentario,nombre,usuario){
+    let modal= await this.modaCont.create({
+      component:CrudComentarioPage,
+      componentProps:{
+        id:id,
+        comentario:comentario,
+        nombre:nombre,
+        usuario:usuario,
+        guardado:true
+      }
+    })
+    return modal.present();
+  }
+
+  cerrar(){
+    this.navCon.pop()
+  }
+
+  
 
 }

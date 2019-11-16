@@ -18,6 +18,7 @@ import {AuthService} from './services/auth.service';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import * as firebase from 'firebase';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CrudComentarioPage } from './modal/crud-comentario/crud-comentario.page';
 
 
 
@@ -34,8 +35,8 @@ firebase.initializeApp(environment.firebaseConfig);
 
 
 @NgModule({
-  declarations: [AppComponent, ModalPage,MapaPage],
-  entryComponents: [ModalPage,MapaPage,],
+  declarations: [AppComponent, ModalPage,MapaPage,CrudComentarioPage],
+  entryComponents: [ModalPage,MapaPage,CrudComentarioPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule,
     AngularFireDatabaseModule,

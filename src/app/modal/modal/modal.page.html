@@ -57,29 +57,36 @@
                </ion-item>
               </ion-card-content>
             </ion-card>
+<ion-content>
+            <ion-infinite-scroll #infiniteScroll threshold="10px" >
+                <ion-refresher (ionRefresh)="doRefresh($event)">
+                    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Arrastra para refrescar" refreshingSpinner="crescent"
+                      refreshingText="Cargando...">
+                    </ion-refresher-content>
+                  </ion-refresher>
+            <ion-list #dynamicList id="dynamicList" >
 
-            <ion-card style="background-color: orange">
-              <ion-card-header>
-                
-                <ion-card-title>Comentarios</ion-card-title>
-              </ion-card-header>
+            <ion-card *ngFor="let item of listaComentariosPane;let i = index" >
+                <ion-card-header>
             
-              <ion-card-content style="font-size: 30px" >
-                <!--
-                  <ion-item *ngFor="let item of comentarios; let i = index">
-                -->
-                <ion-item >
+                    <ion-card-title>{{item.usuario}}</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content style="font-size: 30px">
+                      {{item.comentario}}
+                     </ion-card-content>
+      
+              </ion-card>
+            
 
+          </ion-list>
+        </ion-infinite-scroll>
+            </ion-content>
 
-                </ion-item>
-              
-              </ion-card-content>
-            </ion-card>
             <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-              <ion-fab-button (click)="comentario()">
-                <ion-icon name="add"></ion-icon>
-              </ion-fab-button>
-            </ion-fab>
+                <ion-fab-button (click)="comentario()">
+                  <ion-icon name="add"></ion-icon>
+                </ion-fab-button>
+              </ion-fab>
           </ion-content> 
           
   

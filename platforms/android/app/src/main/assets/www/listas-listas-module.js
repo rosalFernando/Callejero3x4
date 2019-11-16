@@ -541,7 +541,7 @@ var ListasPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-content>\r\n  <ion-list>\r\n    \r\n    <ion-item (click)=\"logout()\">\r\n      Logout\r\n    </ion-item>\r\n  </ion-list>\r\n</ion-content>\r\n"
+module.exports = "<ion-content>\r\n  <ion-list>\r\n    \r\n    <ion-item (click)=\"logout()\">\r\n      Logout\r\n    </ion-item>\r\n    <ion-item (click)=\"irMiscomentarios()\">\r\n      Mis Comentarios\r\n    </ion-item>\r\n  </ion-list>\r\n</ion-content>\r\n"
 
 /***/ }),
 
@@ -570,6 +570,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _services_auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../services/auth.service */ "./src/app/services/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -583,13 +584,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 var PopOverMenuComponent = /** @class */ (function () {
-    function PopOverMenuComponent(events, navParams, popoverController, auth, router) {
+    function PopOverMenuComponent(events, navParams, popoverController, auth, router, modaCont, cloud, toast) {
         this.events = events;
         this.navParams = navParams;
         this.popoverController = popoverController;
         this.auth = auth;
         this.router = router;
+        this.modaCont = modaCont;
+        this.cloud = cloud;
+        this.toast = toast;
+        this.listaComentarios = [];
     }
     PopOverMenuComponent.prototype.ngOnInit = function () {
         //Get data from popover page
@@ -601,6 +607,13 @@ var PopOverMenuComponent = /** @class */ (function () {
         this.popoverController.dismiss();
         this.router.navigate(['autenticacion']);
     };
+    /*
+    crear componente modal.
+    */
+    PopOverMenuComponent.prototype.irMiscomentarios = function () {
+        this.popoverController.dismiss();
+        this.router.navigate(['mis-comentarios']);
+    };
     PopOverMenuComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-pop-over-menu',
@@ -611,7 +624,10 @@ var PopOverMenuComponent = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavParams"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["PopoverController"],
             _services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"],
+            _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__["CloudServiceService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ToastController"]])
     ], PopOverMenuComponent);
     return PopOverMenuComponent;
 }());

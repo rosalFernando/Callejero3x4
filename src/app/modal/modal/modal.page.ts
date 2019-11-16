@@ -6,6 +6,7 @@ import { CloudServiceService } from 'src/app/services/cloud-service.service';
 import { MapaPage } from '../mapa/mapa.page';
 import { Map } from 'leaflet';
 import { AuthService } from 'src/app/services/auth.service';
+import { CrudComentarioPage } from '../crud-comentario/crud-comentario.page';
 
 
 
@@ -30,6 +31,8 @@ export class ModalPage implements OnInit {
   lat:any;
   long:any;
   usuario:any;
+  listaComentarios: any[];
+  listaComentariosPane: any[];
  
   constructor(
     public modalCon: ModalController,
@@ -39,6 +42,7 @@ export class ModalPage implements OnInit {
     private navPar: NavParams,
     public modalCont: ModalController,
     public as: AuthService,
+    
   
    
     
@@ -56,7 +60,16 @@ export class ModalPage implements OnInit {
     this.director=this.navPar.get('director');
     this.horario=this.navPar.get('horario');
    this.usuario=this.as.userDetails().email;
-  console.log(this.usuario)
+
+
+   this.cloud.getComentarioAgrupacion(this.nombre)
+   .then((doc)=>{
+     this.listaComentarios=[];
+     doc.forEach((comen)=>{
+       this.listaComentarios.push({id:comen.id, ...comen.data()})
+     });
+     this.listaComentariosPane=this.listaComentarios
+    })
   }
 
   async presentLoading() {
@@ -72,6 +85,7 @@ export class ModalPage implements OnInit {
 
   cerrar(){
     this.modalCon.dismiss();
+    
       }
 
 
@@ -89,16 +103,28 @@ export class ModalPage implements OnInit {
      return await modal.present();
       }
       
-     comentario(){
-       let navExtras: NavigationExtras={
-         state:{
-           nombre:this.nombre,
-           usuario:this.usuario
-
-         }
-       }
-       this.router.navigate(['/crud-comentario'], navExtras)
+    async comentario(){
+      let modal= await this.modalCont.create({
+        component:CrudComentarioPage,
+        componentProps:{
+          usuario:this.usuario,
+          nombre:this.nombre
+        }
+      })
+      return modal.present();
      }
-    
+     doRefresh(event){
+      this.cloud.getComentarioAgrupacion(this.nombre)
+   .then((doc)=>{
+     this.listaComentarios=[];
+     doc.forEach((comen)=>{
+       this.listaComentarios.push({id:comen.id, ...comen.data()})
+     });
+     this.listaComentariosPane=this.listaComentarios
+    });
+    event.target.complete();
+    }
+
+  
 
 }

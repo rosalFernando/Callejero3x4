@@ -857,9 +857,17 @@ var map = {
 		"./src/app/mapaPrincipal/mapa-principal/mapa-principal.module.ts",
 		"mapaPrincipal-mapa-principal-mapa-principal-module"
 	],
+	"./modal/crud-comentario/crud-comentario.module": [
+		"./src/app/modal/crud-comentario/crud-comentario.module.ts",
+		"modal-crud-comentario-crud-comentario-module"
+	],
 	"./modal/mapa/mapa.module": [
 		"./src/app/modal/mapa/mapa.module.ts",
 		"modal-mapa-mapa-module"
+	],
+	"./modal/mis-comentarios/mis-comentarios.module": [
+		"./src/app/modal/mis-comentarios/mis-comentarios.module.ts",
+		"modal-mis-comentarios-mis-comentarios-module"
 	],
 	"./modal/modal/modal.module": [
 		"./src/app/modal/modal/modal.module.ts",
@@ -917,6 +925,8 @@ var routes = [
     { path: 'mapa-principal', loadChildren: './mapaPrincipal/mapa-principal/mapa-principal.module#MapaPrincipalPageModule' },
     { path: 'autenticacion', loadChildren: './auth/autenticacion/autenticacion.module#AutenticacionPageModule' },
     { path: 'registro', loadChildren: './auth/registro/registro.module#RegistroPageModule' },
+    { path: 'crud-comentario', loadChildren: './modal/crud-comentario/crud-comentario.module#CrudComentarioPageModule' },
+    { path: 'mis-comentarios', loadChildren: './modal/mis-comentarios/mis-comentarios.module#MisComentariosPageModule' },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -1037,7 +1047,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.cjs.js");
 /* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(firebase__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @ionic-native/launch-navigator/ngx */ "./node_modules/@ionic-native/launch-navigator/ngx/index.js");
+/* harmony import */ var _modal_crud_comentario_crud_comentario_page__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./modal/crud-comentario/crud-comentario.page */ "./src/app/modal/crud-comentario/crud-comentario.page.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1069,8 +1079,8 @@ var AppModule = /** @class */ (function () {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
-            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"], _modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_12__["ModalPage"], _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_13__["MapaPage"]],
-            entryComponents: [_modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_12__["ModalPage"], _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_13__["MapaPage"],],
+            declarations: [_app_component__WEBPACK_IMPORTED_MODULE_6__["AppComponent"], _modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_12__["ModalPage"], _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_13__["MapaPage"], _modal_crud_comentario_crud_comentario_page__WEBPACK_IMPORTED_MODULE_18__["CrudComentarioPage"]],
+            entryComponents: [_modal_modal_modal_page__WEBPACK_IMPORTED_MODULE_12__["ModalPage"], _modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_13__["MapaPage"], _modal_crud_comentario_crud_comentario_page__WEBPACK_IMPORTED_MODULE_18__["CrudComentarioPage"]],
             imports: [_angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"], _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicModule"].forRoot(), _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
                 _angular_fire__WEBPACK_IMPORTED_MODULE_8__["AngularFireModule"],
                 angularfire2_database__WEBPACK_IMPORTED_MODULE_11__["AngularFireDatabaseModule"],
@@ -1083,7 +1093,6 @@ var AppModule = /** @class */ (function () {
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_5__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_4__["SplashScreen"],
                 _services_auth_service__WEBPACK_IMPORTED_MODULE_14__["AuthService"],
-                _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_18__["LaunchNavigator"],
                 { provide: _angular_router__WEBPACK_IMPORTED_MODULE_2__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["IonicRouteStrategy"] },
                 angularfire2_firestore__WEBPACK_IMPORTED_MODULE_9__["AngularFirestore"],
             ],
@@ -1097,6 +1106,232 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modal/crud-comentario/crud-comentario.page.html":
+/*!*****************************************************************!*\
+  !*** ./src/app/modal/crud-comentario/crud-comentario.page.html ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ion-header>\r\n  <ion-toolbar color=\"success\">\r\n      <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\r\n          <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\r\n        </ion-button>\r\n    <ion-title color=\"light\" style=\"text-align: center\">Comentario</ion-title>\r\n  </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding>\r\n  <form class=\"form\" [formGroup]=\"comenForm\"  >\r\n \r\n    <ion-item>\r\n      <ion-label  position=\"floating\" color=\"primary\">Comentario</ion-label>\r\n      <ion-input type=\"text\" formControlName=\"comentario\"></ion-input>\r\n    </ion-item>\r\n    \r\n \r\n    <ion-button *ngIf=\"!guardado\"  (click)=\"guardarComentario()\">Aceptar</ion-button>\r\n    <ion-button *ngIf=\"guardado\"  (click)=\"modComentario()\">Modificar</ion-button>\r\n   \r\n \r\n    \r\n  </form>\r\n</ion-content>\r\n"
+
+/***/ }),
+
+/***/ "./src/app/modal/crud-comentario/crud-comentario.page.scss":
+/*!*****************************************************************!*\
+  !*** ./src/app/modal/crud-comentario/crud-comentario.page.scss ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NydWQtY29tZW50YXJpby9jcnVkLWNvbWVudGFyaW8ucGFnZS5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/modal/crud-comentario/crud-comentario.page.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/modal/crud-comentario/crud-comentario.page.ts ***!
+  \***************************************************************/
+/*! exports provided: CrudComentarioPage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CrudComentarioPage", function() { return CrudComentarioPage; });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (undefined && undefined.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
+
+
+
+
+
+var CrudComentarioPage = /** @class */ (function () {
+    function CrudComentarioPage(route, formBuilder, actRouter, cloud, loadingController, toast, navParam, modalCont, navCont) {
+        this.route = route;
+        this.formBuilder = formBuilder;
+        this.actRouter = actRouter;
+        this.cloud = cloud;
+        this.loadingController = loadingController;
+        this.toast = toast;
+        this.navParam = navParam;
+        this.modalCont = modalCont;
+        this.navCont = navCont;
+        this.comentario = '';
+        this.guardado = false;
+    }
+    CrudComentarioPage.prototype.ngOnInit = function () {
+        this.nombre = this.navParam.get('nombre');
+        this.usuario = this.navParam.get('usuario');
+        this.comentario = this.navParam.get('comentario');
+        this.guardado = this.navParam.get('guardado');
+        if (this.guardado == false) {
+            console.log(this.guardado);
+            this.comenForm = this.formBuilder.group({
+                comentario: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]))
+            });
+        }
+        else {
+            console.log(this.guardado);
+            this.comenForm = this.formBuilder.group({
+                comentario: new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](this.comentario, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required]))
+            });
+        }
+    };
+    CrudComentarioPage.prototype.guardarComentario = function () {
+        var _this = this;
+        var data = {
+            usuario: this.usuario,
+            nombre: this.nombre,
+            comentario: this.comenForm.get('comentario').value
+        };
+        this.presentLoading();
+        this.cloud.addComentario(data)
+            .then(function (doc) {
+            _this.comenForm.setValue({ comentario: '' });
+            _this.loadingController.dismiss();
+            _this.cerrar();
+        })
+            .catch(function (error) {
+            _this.loadingController.dismiss();
+            _this.presentToast('Erro al Guardar');
+        });
+    };
+    CrudComentarioPage.prototype.modComentario = function () {
+        var _this = this;
+        var data = {
+            comentario: this.comenForm.get('comentario').value,
+            nombre: this.nombre,
+            usuario: this.usuario
+        };
+        this.presentLoading();
+        this.cloud.updateComentario(this.id, data)
+            .then(function (doc) {
+            _this.comenForm.setValue({ comentario: '' });
+            _this.loadingController.dismiss();
+            _this.presentToast('Comentario modificado');
+            _this.cerrar();
+        })
+            .catch(function (error) {
+            _this.loadingController.dismiss();
+            _this.presentToast('No se puede modificar el comentario');
+        });
+    };
+    CrudComentarioPage.prototype.delComentarios = function (id) {
+        var _this = this;
+        this.cloud.delComentario(id)
+            .then(function () {
+            _this.presentToast('comentarios eliminado');
+        })
+            .catch(function () {
+            _this.presentToast('Error eliminar.');
+        });
+    };
+    CrudComentarioPage.prototype.presentLoading = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var myloading;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            message: 'Guardando'
+                        })];
+                    case 1:
+                        myloading = _a.sent();
+                        return [4 /*yield*/, myloading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    CrudComentarioPage.prototype.presentToast = function (msg) {
+        return __awaiter(this, void 0, void 0, function () {
+            var toast;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toast.create({
+                            message: msg,
+                            duration: 1000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    CrudComentarioPage.prototype.cerrar = function () {
+        this.modalCont.dismiss();
+    };
+    CrudComentarioPage = __decorate([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
+            selector: 'app-crud-comentario',
+            template: __webpack_require__(/*! ./crud-comentario.page.html */ "./src/app/modal/crud-comentario/crud-comentario.page.html"),
+            styles: [__webpack_require__(/*! ./crud-comentario.page.scss */ "./src/app/modal/crud-comentario/crud-comentario.page.scss")]
+        }),
+        __metadata("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
+            src_app_services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__["CloudServiceService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavParams"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ModalController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["NavController"]])
+    ], CrudComentarioPage);
+    return CrudComentarioPage;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/modal/mapa/mapa.page.html":
 /*!*******************************************!*\
   !*** ./src/app/modal/mapa/mapa.page.html ***!
@@ -1104,7 +1339,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\r\n    integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\r\n    crossorigin=\"\" />\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css\" />\r\n  <script src=\"https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js\"></script>\r\n  <script src=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.js\"\r\n    integrity=\"sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==\"\r\n    crossorigin=\"\"></script>\r\n  <!--\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\r\n -->\r\n <script src=\"js/leaflet/leaflet.js\"></script>  \r\n <script src=\"js/main.js\"></script>\r\n\r\n</ion-header>\r\n<ion-content>\r\n\r\n\r\n  <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\r\n \r\n\r\n</ion-content>"
+module.exports = "<ion-header>\r\n  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.4.0/dist/leaflet.css\"\r\n  integrity=\"sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==\"\r\n  crossorigin=\"\"/>\r\n  \r\n  <link  rel = \" stylesheet \"  href = \" https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css \"/>\r\n  \r\n  <!--\r\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximumscale=1.0, user-scalable=no\" />\r\n -->\r\n\r\n\r\n</ion-header>\r\n<ion-content>\r\n\r\n\r\n  <div id=\"map2\" #map style=\"width:100%;height:100%\"></div>\r\n  \r\n  <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\" (click)=\"cierraMapa()\">\r\n    <ion-icon name=\"undo\"></ion-icon>\r\n  </ion-fab>\r\n</ion-content>"
 
 /***/ }),
 
@@ -1131,10 +1366,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MapaPage", function() { return MapaPage; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
-/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
+/* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var leaflet_routing_machine__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! leaflet-routing-machine */ "./node_modules/leaflet-routing-machine/dist/leaflet-routing-machine.js");
+/* harmony import */ var leaflet_routing_machine__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(leaflet_routing_machine__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1229,26 +1466,104 @@ var MapaPage = /** @class */ (function () {
      * Metodo que carga un mapa con unas coordenadas predifinidas.
      */
     MapaPage.prototype.loadmap = function () {
-        console.log("Cargando mapa...");
-        this.icon = leaflet__WEBPACK_IMPORTED_MODULE_2__["icon"]({
-            iconUrl: '../../../assets/img/plumas.png',
-            iconSize: [38, 60],
-            shadowSize: [50, 64],
-            iconAnchor: [22, 94],
-            shadowAnchor: [4, 62],
-            popupAnchor: [-3, -76] // point from which the popup should open relative..
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, navigator.geolocation.getCurrentPosition(function (pos) {
+                            var map = leaflet__WEBPACK_IMPORTED_MODULE_3__["map"]('map2');
+                            leaflet__WEBPACK_IMPORTED_MODULE_3__["tileLayer"]('http://{s}.tile.osm.org/{z}/{x}/{y}{r}.png', {
+                                attribution: '© OpenStreetMap contributors'
+                            }).addTo(map);
+                            leaflet__WEBPACK_IMPORTED_MODULE_3__["Routing"].control({
+                                waypoints: [
+                                    leaflet__WEBPACK_IMPORTED_MODULE_3__["latLng"](pos.coords.latitude, pos.coords.longitude),
+                                    leaflet__WEBPACK_IMPORTED_MODULE_3__["latLng"](_this.lat, _this.long)
+                                ],
+                                routeWhileDragging: true
+                            }).addTo(map);
+                        })
+                        /*
+                        console.log("Cargando mapa...")
+                        this.icon=L.icon({
+                          iconUrl: '../../../assets/img/plumas.png',
+                    
+                    iconSize: [38, 60], // size of the icon
+                    shadowSize: [50, 64], // size of the shadow
+                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's
+                    shadowAnchor: [4, 62],  // the same for the shadow
+                    popupAnchor: [-3, -76] // point from which the popup should open relative..
+                        });
+                          
+                        this.map = new L.Map("map2",{center:[this.lat,this.long]}).setView([ this.lat,this.long],
+                          14);
+                       
+                        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                          
+                          maxZoom: 18,
+                          minZoom:10,
+                       
+                        }).addTo(this.map);
+                    
+                      navigator.geolocation.getCurrentPosition((pos)=>{
+                        marker([this.lat,this.long],{icon:this.icon}).addTo(this.map)
+                       .bindPopup(this.ubicacionnombre)
+                              .openPopup();
+                    
+                        L.Routing.control({
+                          waypoints:[
+                          L.latLng(pos.coords.latitude,pos.coords.longitude),
+                            L.latLng(this.lat,this.long)
+                          ],
+                          
+                        }).addTo(this.map)
+                      })
+                        */
+                    ];
+                    case 1: return [2 /*return*/, _a.sent()
+                        /*
+                        console.log("Cargando mapa...")
+                        this.icon=L.icon({
+                          iconUrl: '../../../assets/img/plumas.png',
+                    
+                    iconSize: [38, 60], // size of the icon
+                    shadowSize: [50, 64], // size of the shadow
+                    iconAnchor: [22, 94], // point of the icon which will correspond to marker's
+                    shadowAnchor: [4, 62],  // the same for the shadow
+                    popupAnchor: [-3, -76] // point from which the popup should open relative..
+                        });
+                          
+                        this.map = new L.Map("map2",{center:[this.lat,this.long]}).setView([ this.lat,this.long],
+                          14);
+                       
+                        tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                          
+                          maxZoom: 18,
+                          minZoom:10,
+                       
+                        }).addTo(this.map);
+                    
+                      navigator.geolocation.getCurrentPosition((pos)=>{
+                        marker([this.lat,this.long],{icon:this.icon}).addTo(this.map)
+                       .bindPopup(this.ubicacionnombre)
+                              .openPopup();
+                    
+                        L.Routing.control({
+                          waypoints:[
+                          L.latLng(pos.coords.latitude,pos.coords.longitude),
+                            L.latLng(this.lat,this.long)
+                          ],
+                          
+                        }).addTo(this.map)
+                      })
+                        */
+                    ];
+                }
+            });
         });
-        this.map = new leaflet__WEBPACK_IMPORTED_MODULE_2__["Map"]("map2", { center: [this.lat, this.long] }).setView([this.lat, this.long], 14);
-        Object(leaflet__WEBPACK_IMPORTED_MODULE_2__["tileLayer"])('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            minZoom: 10,
-        }).addTo(this.map);
-        Object(leaflet__WEBPACK_IMPORTED_MODULE_2__["marker"])([this.lat, this.long], { icon: this.icon }).addTo(this.map)
-            .bindPopup(this.ubicacionnombre)
-            .openPopup();
     };
-    MapaPage.prototype.ionViewWillLeave = function () {
-        this.map.remove();
+    MapaPage.prototype.cierraMapa = function () {
+        this.modalCon.dismiss();
     };
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewChild"])('map2'),
@@ -1261,8 +1576,8 @@ var MapaPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./mapa.page.scss */ "./src/app/modal/mapa/mapa.page.scss")]
         }),
         __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavController"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__["CloudServiceService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_5__["CloudServiceService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavParams"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["LoadingController"]])
@@ -1281,7 +1596,7 @@ var MapaPage = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header>\r\n    <ion-toolbar color=\"success\">\r\n      \r\n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\r\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\r\n            </ion-button>\r\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\r\n      \r\n   \r\n    </ion-toolbar>\r\n  </ion-header>\r\n  \r\n  <ion-content>\r\n      <ion-card style=\"background-color:yellow\">\r\n          <ion-card-header>\r\n            \r\n            <ion-card-title>Nombre</ion-card-title>\r\n          </ion-card-header>\r\n         \r\n        \r\n          <ion-card-content style=\"font-size: 30px\">\r\n           {{nombre}}\r\n          </ion-card-content>\r\n        </ion-card>\r\n        <ion-card style=\"background-color: lightsalmon\">\r\n            <ion-card-header>\r\n              \r\n              <ion-card-title>Director</ion-card-title>\r\n            </ion-card-header>\r\n          \r\n            <ion-card-content style=\"font-size: 30px\">\r\n             {{director}}\r\n            </ion-card-content>\r\n          </ion-card>\r\n          <ion-card style=\"background-color: orange\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Origen</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content style=\"font-size: 30px\">\r\n               {{origen}}\r\n              </ion-card-content>\r\n            </ion-card>\r\n        \r\n          <ion-card style=\"background-color:orangered\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Horario</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content >\r\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\r\n               {{item.horario}}\r\n               {{item.ubicacionnombre}}\r\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"loadMap()\">\r\n               </ion-item>\r\n              </ion-card-content>\r\n            </ion-card>\r\n    \r\n          </ion-content> \r\n        \r\n  \r\n\r\n  <ion-footer >\r\n      <ion-toolbar color=\"success\">\r\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n      </ion-toolbar>\r\n    </ion-footer>\r\n"
+module.exports = "<ion-header>\r\n    <ion-toolbar color=\"success\">\r\n      \r\n          <ion-button fill=\"outline\" color=\"success\" slot=\"start\" (click)=\"cerrar()\" >\r\n              <ion-icon slot=\"icon-only\" color=\"light\" name=\"undo\" ></ion-icon>\r\n            </ion-button>\r\n        <ion-title style=\"text-align: start\">{{tipo}}</ion-title>\r\n      \r\n   \r\n    </ion-toolbar>\r\n  </ion-header>\r\n  \r\n  <ion-content>\r\n      <ion-card style=\"background-color:yellow\">\r\n          <ion-card-header>\r\n            \r\n            <ion-card-title>Nombre</ion-card-title>\r\n          </ion-card-header>\r\n         \r\n        \r\n          <ion-card-content style=\"font-size: 30px\">\r\n           {{nombre}}\r\n          </ion-card-content>\r\n        </ion-card>\r\n        <ion-card style=\"background-color: lightsalmon\">\r\n            <ion-card-header>\r\n              \r\n              <ion-card-title>Director</ion-card-title>\r\n            </ion-card-header>\r\n          \r\n            <ion-card-content style=\"font-size: 30px\">\r\n             {{director}}\r\n            </ion-card-content>\r\n          </ion-card>\r\n          <ion-card style=\"background-color: orange\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Origen</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content style=\"font-size: 30px\">\r\n               {{origen}}\r\n              </ion-card-content>\r\n            </ion-card>\r\n        \r\n          <ion-card style=\"background-color:orangered\">\r\n              <ion-card-header>\r\n                \r\n                <ion-card-title>Horario</ion-card-title>\r\n              </ion-card-header>\r\n            \r\n              <ion-card-content >\r\n                  <ion-item *ngFor=\"let item of horario;let i = index\">\r\n               {{item.horario}}\r\n               {{item.ubicacionnombre}}\r\n               <img src=\"../../../assets/img/plumas.png\"  slot=\"end\" style=\"width:40px;margin:0px\" (click)=\"mostrarUbi(item.ubicacionnombre,item.ubicacionpos)\">\r\n               </ion-item>\r\n              </ion-card-content>\r\n            </ion-card>\r\n<ion-content>\r\n            <ion-infinite-scroll #infiniteScroll threshold=\"10px\" >\r\n                <ion-refresher (ionRefresh)=\"doRefresh($event)\">\r\n                    <ion-refresher-content pullingIcon=\"arrow-dropdown\" pullingText=\"Arrastra para refrescar\" refreshingSpinner=\"crescent\"\r\n                      refreshingText=\"Cargando...\">\r\n                    </ion-refresher-content>\r\n                  </ion-refresher>\r\n            <ion-list #dynamicList id=\"dynamicList\" >\r\n\r\n            <ion-card *ngFor=\"let item of listaComentariosPane;let i = index\" >\r\n                <ion-card-header>\r\n            \r\n                    <ion-card-title>{{item.usuario}}</ion-card-title>\r\n                  </ion-card-header>\r\n                  <ion-card-content style=\"font-size: 30px\">\r\n                      {{item.comentario}}\r\n                     </ion-card-content>\r\n      \r\n              </ion-card>\r\n            \r\n\r\n          </ion-list>\r\n        </ion-infinite-scroll>\r\n            </ion-content>\r\n\r\n            <ion-fab vertical=\"bottom\" horizontal=\"end\" slot=\"fixed\">\r\n                <ion-fab-button (click)=\"comentario()\">\r\n                  <ion-icon name=\"add\"></ion-icon>\r\n                </ion-fab-button>\r\n              </ion-fab>\r\n          </ion-content> \r\n          \r\n  \r\n\r\n  <ion-footer >\r\n      <ion-toolbar color=\"success\">\r\n        <ion-title color=\"light\" style=\"font-size: 15px; text-align: center\">COAC Córdoba.</ion-title>\r\n      </ion-toolbar>\r\n    </ion-footer>\r\n"
 
 /***/ }),
 
@@ -1310,7 +1625,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var src_app_services_cloud_service_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
-/* harmony import */ var _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/launch-navigator/ngx */ "./node_modules/@ionic-native/launch-navigator/ngx/index.js");
+/* harmony import */ var _mapa_mapa_page__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mapa/mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
+/* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/auth.service */ "./src/app/services/auth.service.ts");
+/* harmony import */ var _crud_comentario_crud_comentario_page__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../crud-comentario/crud-comentario.page */ "./src/app/modal/crud-comentario/crud-comentario.page.ts");
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1360,8 +1688,10 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
+
 var ModalPage = /** @class */ (function () {
-    function ModalPage(modalCon, cloud, router, loadingContr, navPar, modalCont, ln) {
+    function ModalPage(modalCon, cloud, router, loadingContr, navPar, modalCont, as) {
         //comprobar en oninit
         this.modalCon = modalCon;
         this.cloud = cloud;
@@ -1369,19 +1699,29 @@ var ModalPage = /** @class */ (function () {
         this.loadingContr = loadingContr;
         this.navPar = navPar;
         this.modalCont = modalCont;
-        this.ln = ln;
+        this.as = as;
         this.listado = [];
         this.listadoPanel = [];
         this.horario = [];
         this.agrupList = [];
     }
     ModalPage.prototype.ngOnInit = function () {
+        var _this = this;
         this.nombre = this.navPar.get('nombre');
         this.key = this.navPar.get('key');
         this.origen = this.navPar.get('origen');
         this.tipo = this.navPar.get('tipo');
         this.director = this.navPar.get('director');
         this.horario = this.navPar.get('horario');
+        this.usuario = this.as.userDetails().email;
+        this.cloud.getComentarioAgrupacion(this.nombre)
+            .then(function (doc) {
+            _this.listaComentarios = [];
+            doc.forEach(function (comen) {
+                _this.listaComentarios.push(__assign({ id: comen.id }, comen.data()));
+            });
+            _this.listaComentariosPane = _this.listaComentarios;
+        });
     };
     ModalPage.prototype.presentLoading = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -1401,13 +1741,60 @@ var ModalPage = /** @class */ (function () {
             });
         });
     };
-    ModalPage.prototype.loadMap = function () {
-        this.ln.navigate([50.279306, -5.163158], {
-            start: "50.342847, -4.749904"
-        });
-    };
     ModalPage.prototype.cerrar = function () {
         this.modalCon.dismiss();
+    };
+    ModalPage.prototype.mostrarUbi = function (ubicacionnombre, ubicacionpos) {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalCont.create({
+                            component: _mapa_mapa_page__WEBPACK_IMPORTED_MODULE_4__["MapaPage"],
+                            cssClass: 'mapa',
+                            componentProps: {
+                                ubicacionnombre: ubicacionnombre,
+                                ubicacionpos: ubicacionpos
+                            },
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        return [4 /*yield*/, modal.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    ModalPage.prototype.comentario = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalCont.create({
+                            component: _crud_comentario_crud_comentario_page__WEBPACK_IMPORTED_MODULE_6__["CrudComentarioPage"],
+                            componentProps: {
+                                usuario: this.usuario,
+                                nombre: this.nombre
+                            }
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        return [2 /*return*/, modal.present()];
+                }
+            });
+        });
+    };
+    ModalPage.prototype.doRefresh = function (event) {
+        var _this = this;
+        this.cloud.getComentarioAgrupacion(this.nombre)
+            .then(function (doc) {
+            _this.listaComentarios = [];
+            doc.forEach(function (comen) {
+                _this.listaComentarios.push(__assign({ id: comen.id }, comen.data()));
+            });
+            _this.listaComentariosPane = _this.listaComentarios;
+        });
+        event.target.complete();
     };
     ModalPage = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -1421,7 +1808,7 @@ var ModalPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["LoadingController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavParams"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"],
-            _ionic_native_launch_navigator_ngx__WEBPACK_IMPORTED_MODULE_4__["LaunchNavigator"]])
+            src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_5__["AuthService"]])
     ], ModalPage);
     return ModalPage;
 }());
@@ -1443,6 +1830,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/fire/auth */ "./node_modules/@angular/fire/auth/index.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1454,8 +1842,10 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService() {
+    function AuthService(afo) {
+        this.afo = afo;
     }
     AuthService.prototype.registerUser = function (value) {
         return new Promise(function (resolve, reject) {
@@ -1484,11 +1874,45 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.userDetails = function () {
         return firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"]().currentUser;
     };
+    AuthService.prototype.doGoogleLogin = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            var provider = new firebase_app__WEBPACK_IMPORTED_MODULE_1__["auth"].GoogleAuthProvider();
+            provider.addScope('profile');
+            provider.addScope('email');
+            _this.afo.auth.signInWithRedirect(provider).then(function (res) {
+                resolve(res);
+                // console.log(this.getUser());
+            }).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+                console.log(errorMessage);
+            });
+        });
+    };
+    //return observable
+    AuthService.prototype.isLogged = function () {
+        return this.afo.authState;
+    };
+    AuthService.prototype.isAuthenticated = function () {
+        if (this.userDetails == null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [_angular_fire_auth__WEBPACK_IMPORTED_MODULE_2__["AngularFireAuth"]])
     ], AuthService);
     return AuthService;
 }());
@@ -1612,6 +2036,7 @@ var CloudServiceService = /** @class */ (function () {
         this.isConnected = true;
         this.AgrupCol = fireStone.collection(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].firebaseConfig.AgrupCollection);
         this.AgrupUbi = fireStone.collection(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].firebaseConfig.AgrupUbica);
+        this.AgrupComen = fireStone.collection(_environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].firebaseConfig.AgrupComen);
     }
     CloudServiceService.prototype.isInfinityScrollEnabled = function () {
         return this.scrollAgrupEnable;
@@ -1662,6 +2087,29 @@ var CloudServiceService = /** @class */ (function () {
     CloudServiceService.prototype.getUbiPotro = function () {
         return this.AgrupUbi.ref.where("nombre", "==", "Plaza del Potro").get();
     };
+    /**
+     * Metodos CRUD de comentarios.
+     */
+    /*añadir comentarios*/
+    CloudServiceService.prototype.addComentario = function (datos) {
+        return this.AgrupComen.add(datos);
+    };
+    /*Eliminar Comentario. */
+    CloudServiceService.prototype.delComentario = function (id) {
+        return this.AgrupComen.doc(id).delete();
+    };
+    CloudServiceService.prototype.updateComentario = function (id, data) {
+        return this.AgrupComen.doc(id).set(data);
+    };
+    /**
+     * Metodos para obtener los comentarios.
+     */
+    CloudServiceService.prototype.getComentarioUsuario = function (usuario) {
+        return this.AgrupComen.ref.where("usuario", "==", usuario).get();
+    };
+    CloudServiceService.prototype.getComentarioAgrupacion = function (nombreAgrup) {
+        return this.AgrupComen.ref.where("nombre", "==", nombreAgrup).get();
+    };
     CloudServiceService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"])({
             providedIn: 'root'
@@ -1698,7 +2146,8 @@ var environment = {
         storageBucket: "callejero-9db30.appspot.com",
         messagingSenderId: "768784275736",
         AgrupCollection: "Agrupaciones",
-        AgrupUbica: "Ubicaciones"
+        AgrupUbica: "Ubicaciones",
+        AgrupComen: "Comentarios",
     },
     defaultAgrup: "Empty data base.",
     currentLanguages: ['es', 'en'],

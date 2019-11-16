@@ -1,9 +1,25 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>crudComentario</ion-title>
+  <ion-toolbar color="success">
+      <ion-button fill="outline" color="success" slot="start" (click)="cerrar()" >
+          <ion-icon slot="icon-only" color="light" name="undo" ></ion-icon>
+        </ion-button>
+    <ion-title color="light" style="text-align: center">Comentario</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+  <form class="form" [formGroup]="comenForm"  >
+ 
+    <ion-item>
+      <ion-label  position="floating" color="primary">Comentario</ion-label>
+      <ion-input type="text" formControlName="comentario"></ion-input>
+    </ion-item>
+    
+ 
+    <ion-button *ngIf="!guardado"  (click)="guardarComentario()">Aceptar</ion-button>
+    <ion-button *ngIf="guardado"  (click)="modComentario()">Modificar</ion-button>
+   
+ 
+    
+  </form>
 </ion-content>

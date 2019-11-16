@@ -93,6 +93,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/cloud-service.service */ "./src/app/services/cloud-service.service.ts");
+/* harmony import */ var src_app_modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/mapa/mapa.page */ "./src/app/modal/mapa/mapa.page.ts");
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -154,12 +155,14 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var MapaPrincipalPage = /** @class */ (function () {
-    function MapaPrincipalPage(navCtrl, router, cloud, loading) {
+    function MapaPrincipalPage(navCtrl, router, cloud, loading, modalCont) {
         this.navCtrl = navCtrl;
         this.router = router;
         this.cloud = cloud;
         this.loading = loading;
+        this.modalCont = modalCont;
         this.agrupList = [];
         this.agrupUbi = [];
     }
@@ -223,6 +226,27 @@ var MapaPrincipalPage = /** @class */ (function () {
     MapaPrincipalPage.prototype.ionViewWillLeave = function () {
         this.map.remove();
     };
+    MapaPrincipalPage.prototype.mostrarUbi = function (ubicacionnombre, ubicacionpos) {
+        return __awaiter(this, void 0, void 0, function () {
+            var modal;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.modalCont.create({
+                            component: src_app_modal_mapa_mapa_page__WEBPACK_IMPORTED_MODULE_5__["MapaPage"],
+                            cssClass: 'mapa',
+                            componentProps: {
+                                ubicacionnombre: ubicacionnombre,
+                                ubicacionpos: ubicacionpos
+                            },
+                        })];
+                    case 1:
+                        modal = _a.sent();
+                        return [4 /*yield*/, modal.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
     MapaPrincipalPage.prototype.irListas = function () {
         this.router.navigate(['listas']);
     };
@@ -239,7 +263,8 @@ var MapaPrincipalPage = /** @class */ (function () {
         __metadata("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_1__["NavController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
             _services_cloud_service_service__WEBPACK_IMPORTED_MODULE_4__["CloudServiceService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["LoadingController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["LoadingController"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_1__["ModalController"]])
     ], MapaPrincipalPage);
     return MapaPrincipalPage;
 }());
